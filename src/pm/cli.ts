@@ -27,7 +27,7 @@ function defaultConfigPath(): string {
 }
 
 function usage(): void {
-  console.error(`Usage: pm [options] [command]
+  console.log(`Usage: pm [options] [command]
 
 Commands:
   cd [name]                    Jump to a project (fzf if no name given)

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "dotfiles",
+    "rootPath": "~/Code/nozomiishii/dotfiles",
+    "tags": ["personal"],
+    "enabled": true
+  },
+  {
+    "name": "portfolio",
+    "rootPath": "~/Code/nozomiishii/portfolio",
+    "tags": ["personal"],
+    "enabled": true
+  },
+  {
+    "name": "fzf",
+    "rootPath": "~/Code/junegunn/fzf",
+    "tags": ["oss"],
+    "enabled": true
+  },
+  {
+    "name": "vscode-project-manager",
+    "rootPath": "~/Code/alefragnani/vscode-project-manager",
+    "tags": ["oss"],
+    "enabled": true
+  },
+  {
+    "name": "visual-studio-code-project-manager",
+    "rootPath": "~/Code/mathieudutour/visual-studio-code-project-manager",
+    "tags": ["oss"],
+    "enabled": true
+  }
+]

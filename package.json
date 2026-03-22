@@ -18,6 +18,7 @@
   },
   "scripts": {
     "build:binary": "bun build --compile src/pm/cli.ts --outfile dist/pm",
+    "demo": "bash scripts/demo.sh",
     "test": "vitest run"
   },
   "devDependencies": {
