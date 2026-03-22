@@ -1,0 +1,31 @@
+{
+  "name": "@nozomiishii/pm",
+  "version": "0.1.0",
+  "description": "Project manager CLI — jump to projects via fzf",
+  "type": "module",
+  "homepage": "https://github.com/nozomiishii/pm#readme",
+  "bugs": {
+    "url": "https://github.com/nozomiishii/pm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nozomiishii/pm.git"
+  },
+  "license": "MIT",
+  "author": "Nozomi Ishii",
+  "bin": {
+    "pm": "./src/pm/cli.ts"
+  },
+  "scripts": {
+    "build:binary": "bun build --compile src/pm/cli.ts --outfile dist/pm",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.15",
+    "vitest": "4.1.0"
+  },
+  "packageManager": "bun@1.3.11",
+  "engines": {
+    "node": "24.14.0"
+  }
+}
