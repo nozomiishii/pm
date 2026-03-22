@@ -30,7 +30,7 @@ else
   BUN_TARGET="bun-linux-x64"
 fi
 
-bun build --compile --target="$BUN_TARGET" src/pm/cli.ts --outfile dist/pm-linux
+bun build --compile --target="$BUN_TARGET" src/cli.ts --outfile dist/pm-linux
 
 # ----------------------------------------------------------
 # 2. Docker イメージをビルド

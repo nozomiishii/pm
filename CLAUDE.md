@@ -23,7 +23,7 @@ bun run build:binary
 bun run demo
 
 # ローカルで CLI を実行
-bun run src/pm/cli.ts
+bun run src/cli.ts
 ```
 
 ## アーキテクチャ概要
@@ -32,10 +32,10 @@ bun run src/pm/cli.ts
 
 ### 主要コンポーネント
 
-1. **`src/pm/cli.ts`**: CLI エントリポイント。手動ループでの引数パース → サブコマンドルーティング (`cd`, `ls`, `create-workspace`)。
-2. **`src/pm/` ユーティリティ**: 各機能は単一責務の純粋関数として分離 (`expand-home.ts`, `filter-projects.ts`, `find-project.ts`, `strip-emoji-label.ts`)。
-3. **`src/pm/generate-workspace/`**: `.code-workspace` 生成ロジック。
-4. **`src/pm/pm.zsh`**: シェルラッパー。バイナリの出力がディレクトリなら現在のシェルで `cd` する + タブ補完。
+1. **`src/cli.ts`**: CLI エントリポイント。手動ループでの引数パース → サブコマンドルーティング (`cd`, `ls`, `create-workspace`)。
+2. **`src/` ユーティリティ**: 各機能は単一責務の純粋関数として分離 (`expand-home.ts`, `filter-projects.ts`, `find-project.ts`, `strip-emoji-label.ts`)。
+3. **`src/generate-workspace/`**: `.code-workspace` 生成ロジック。
+4. **`src/pm.zsh`**: シェルラッパー。バイナリの出力がディレクトリなら現在のシェルで `cd` する + タブ補完。
 5. **`install.sh`**: curl | bash のワンライナーインストーラー。GitHub Releases からバイナリをダウンロード。
 
 ### デモシステム
@@ -49,7 +49,7 @@ bun run src/pm/cli.ts
 
 - **ESM only**: `"type": "module"`。import には `.js` 拡張子を付ける (`import { foo } from "./foo.js"`)。Node 組み込みは `node:` プレフィックス。
 - **テスト**: Vitest。テストファイルはソースと同じディレクトリに `{name}.test.ts` で配置。
-- **型定義**: `src/pm/types.ts` に集約 (`Project`, `WorkspaceFolder`, `CodeWorkspace`)。
+- **型定義**: `src/types.ts` に集約 (`Project`, `WorkspaceFolder`, `CodeWorkspace`)。
 - **外部依存なし**: CLI 引数パースを含め、ランタイム依存は zero。
 
 ## README フォーマットルール
