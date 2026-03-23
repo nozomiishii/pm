@@ -23,6 +23,8 @@
     "demo:all": "bash demo/create.sh",
     "demo:logo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs demo/logo.tape",
     "logo:colorize": "bun run src/logo/create-logo-color.ts",
+    "install:local": "bash install.sh",
+    "uninstall:local": "bash uninstall.sh",
     "test": "vitest run"
   },
   "devDependencies": {

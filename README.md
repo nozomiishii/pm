@@ -40,7 +40,36 @@ The `pm` binary is downloaded to `~/.pm/bin/pm`, and the wrapper script that cal
 
 Restart your terminal or run `source ~/.zshrc` to start using pm.
 
+## Uninstall
+
+```sh
+pm uninstall
+```
+
+Removes the binary, config files, and `.zshrc` entries.
+
 ## Usage
+
+### pm --help
+
+```
+Usage: pm [options] [command]
+
+Commands:
+  cd [name]                    Jump to a project (fzf if no name given)
+  ls                           List project names
+  logo                         Display the pm logo
+  uninstall                    Uninstall pm from your system
+  create-workspace             Generate a .code-workspace file
+    --name <name>              Workspace name (outputs <name>.code-workspace)
+    --tag <name>               Include only projects with this tag (repeatable)
+
+Options:
+  --config <path>              Path to projects.json (or PM_CONFIG)
+  --help                       Show this help
+
+Running `pm` without a command opens the fzf picker.
+```
 
 ```sh
 pm --help

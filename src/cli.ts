@@ -34,6 +34,7 @@ Commands:
   cd [name]                    Jump to a project (fzf if no name given)
   ls                           List project names
   logo                         Display the pm logo
+  uninstall                    Uninstall pm from your system
   create-workspace             Generate a .code-workspace file
     --name <name>              Workspace name (outputs <name>.code-workspace)
     --tag <name>               Include only projects with this tag (repeatable)
@@ -49,7 +50,7 @@ function printLogo(): void {
   console.log(LOGO_COLOR);
 }
 
-const SUBCOMMANDS = new Set(["cd", "ls", "create-workspace", "logo"]);
+const SUBCOMMANDS = new Set(["cd", "ls", "create-workspace", "logo", "uninstall"]);
 
 function parseArgs(argv: string[]) {
   let config = process.env.PM_CONFIG ?? defaultConfigPath();
@@ -190,6 +191,15 @@ async function main() {
   if (args.subcommand === "logo") {
     printLogo();
     process.exit(0);
+  }
+
+  if (args.subcommand === "uninstall") {
+    const url = "https://raw.githubusercontent.com/nozomiishii/pm/main/uninstall.sh";
+    const proc = spawn("bash", ["-c", `curl -fsSL "${url}" | bash`], {
+      stdio: "inherit",
+    });
+    proc.on("close", (code) => process.exit(code ?? 0));
+    return;
   }
 
   const filePath = expandHome(args.config);
