@@ -2,6 +2,12 @@
 
 [日本語](README.ja.md)
 
+<br>
+<div align="center">
+  <img src="demo/logo.gif" alt="logo" width="480" />
+</div>
+<br>
+
 I wanted to use [VS Code Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager) from the terminal too!
 
 With the `pm` command, you can jump to any project registered in VS Code Project Manager.

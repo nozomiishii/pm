@@ -20,7 +20,8 @@ DOCKERFILE="$PROJECT_ROOT/demo/Dockerfile"
 #    macOS 上でも bun が Linux バイナリを生成してくれる
 #    ホストの CPU アーキテクチャに合わせてターゲットを選択
 # ----------------------------------------------------------
-echo "📦 Linux バイナリをビルド中..."
+# Linux バイナリをビルド
+echo "Building Linux binary..."
 cd "$PROJECT_ROOT"
 
 ARCH="$(uname -m)"
@@ -37,7 +38,8 @@ bun build --compile --target="$BUN_TARGET" src/cli.ts --outfile dist/pm-linux
 #    VHS ベースイメージに fzf を追加したイメージを作成
 #    projects.json から rootPath を読み取り、ダミーディレクトリとして渡す
 # ----------------------------------------------------------
-echo "🐳 Docker イメージをビルド中..."
+# Docker イメージをビルド
+echo "Building Docker image..."
 
 # projects.json の rootPath (~/ → /root/) を抽出してスペース区切りに
 DEMO_DIRS=$(sed -n 's/.*"rootPath": *"~\(\/[^"]*\)".*/\/root\1/p' "$PROJECT_ROOT/demo/projects.json" | tr '\n' ' ')
@@ -48,18 +50,20 @@ docker build \
   -f "$DOCKERFILE" \
   "$PROJECT_ROOT"
 
-echo "✅ ビルド完了"
+# ビルド完了
+echo "Build complete."
 
 # ----------------------------------------------------------
 # 4. 各テープファイルを実行して GIF を生成
 #    demo/*.tape を順番に処理する
 # ----------------------------------------------------------
 echo ""
-echo "🎬 GIF を生成中..."
+# GIF を生成
+echo "Generating demo files..."
 
 for tape in "$PROJECT_ROOT"/demo/*.tape; do
   name="$(basename "$tape" .tape)"
-  echo "  ▶ $name"
+  echo "  > $name"
   docker run --rm \
     -v "$PROJECT_ROOT":/vhs \
     "$IMAGE_NAME" \
@@ -70,7 +74,8 @@ done
 # 5. 完了メッセージ
 # ----------------------------------------------------------
 echo ""
-echo "✅ 生成完了! 以下の GIF が作成されました:"
-for gif in "$PROJECT_ROOT"/demo/*.gif; do
-  [ -f "$gif" ] && echo "  📄 $gif"
+# 生成完了
+echo "Done. Generated files:"
+for file in "$PROJECT_ROOT"/demo/*.gif "$PROJECT_ROOT"/demo/*.png; do
+  [ -f "$file" ] && echo "  $file"
 done

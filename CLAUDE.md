@@ -17,7 +17,9 @@ bun install
 bun run test
 
 # ネイティブバイナリをビルド
-bun run build:binary
+bun run build
+
+# npm パッケージ用のビルドは prepublishOnly に記述する (npm publish 時に自動実行される)
 
 # デモ GIF を生成 (Docker 経由)
 bun run demo
