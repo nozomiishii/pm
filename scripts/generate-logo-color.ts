@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 
-const logo = readFileSync(join(root, "logo.ascii"), "utf-8");
+const logo = readFileSync(join(root, "src", "logo.ascii"), "utf-8");
 
 const colors: [number, number, number][] = [
   [120, 180, 255],
@@ -28,5 +28,5 @@ const colored = lines
   })
   .join("\n");
 
-writeFileSync(join(root, "logo-color.ascii"), colored + "\n");
-console.log("Generated logo-color.ascii");
+writeFileSync(join(root, "src", "logo-color.ascii"), colored + "\n");
+console.log("Generated src/logo-color.ascii");
