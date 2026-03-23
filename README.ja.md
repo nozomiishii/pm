@@ -2,6 +2,12 @@
 
 [English](README.md)
 
+<br>
+<div align="center">
+  <img src="demo/logo.gif" alt="logo" width="480" />
+</div>
+<br>
+
 [VS Code Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager) をターミナルでも使いたい！
 
 `pm`コマンドだったらVS Code Project Managerに登録されたプロジェクトへ移動できます。
