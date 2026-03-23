@@ -4,8 +4,8 @@
 set -euo pipefail
 
 REPO="nozomiishii/pm"
-INSTALL_DIR="$HOME/.pm"
-BIN_DIR="$INSTALL_DIR/bin"
+BIN_DIR="${XDG_BIN_HOME:-$HOME/.local/bin}"
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pm"
 
 # ---------------------------------------------------------------------------
 # Detect platform
@@ -52,21 +52,20 @@ download() {
 
   local binary_url="${base_url}/pm-${platform}"
   local zsh_url="${base_url}/pm.zsh"
-
   local logo_url="${base_url}/logo-color.ascii"
 
-  mkdir -p "$BIN_DIR"
+  mkdir -p "$BIN_DIR" "$CONFIG_DIR"
 
   echo "Downloading pm for ${platform}..."
 
   if command -v curl >/dev/null; then
     curl -fsSL "$binary_url" -o "$BIN_DIR/pm"
-    curl -fsSL "$zsh_url" -o "$INSTALL_DIR/pm.zsh"
-    curl -fsSL "$logo_url" -o "$INSTALL_DIR/logo-color.ascii" 2>/dev/null || true
+    curl -fsSL "$zsh_url" -o "$CONFIG_DIR/pm.zsh"
+    curl -fsSL "$logo_url" -o "$CONFIG_DIR/logo-color.ascii" 2>/dev/null || true
   elif command -v wget >/dev/null; then
     wget -qO "$BIN_DIR/pm" "$binary_url"
-    wget -qO "$INSTALL_DIR/pm.zsh" "$zsh_url"
-    wget -qO "$INSTALL_DIR/logo-color.ascii" "$logo_url" 2>/dev/null || true
+    wget -qO "$CONFIG_DIR/pm.zsh" "$zsh_url"
+    wget -qO "$CONFIG_DIR/logo-color.ascii" "$logo_url" 2>/dev/null || true
   else
     echo "Error: curl or wget is required" >&2
     exit 1
@@ -81,7 +80,7 @@ download() {
 configure_shell() {
   local zshrc="$HOME/.zshrc"
   # shellcheck disable=SC2016
-  local marker='export PATH="$HOME/.pm/bin:$PATH"'
+  local marker='source "${XDG_CONFIG_HOME:-$HOME/.config}/pm/pm.zsh"'
 
   # Skip if already configured
   if [ -f "$zshrc" ] && grep -qF "$marker" "$zshrc"; then
@@ -93,8 +92,8 @@ configure_shell() {
   config_block=$(cat <<'BLOCK'
 
 # pm - VS Code Project Manager CLI
-export PATH="$HOME/.pm/bin:$PATH"
-source "$HOME/.pm/pm.zsh"
+export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:$PATH"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/pm/pm.zsh"
 BLOCK
 )
 
@@ -121,15 +120,15 @@ main() {
   echo "You love VS Code Project Manager? So do I! Now it's in your terminal too."
   echo ""
 
-  if [ -f "$INSTALL_DIR/logo-color.ascii" ]; then
-    cat "$INSTALL_DIR/logo-color.ascii"
-    rm -f "$INSTALL_DIR/logo-color.ascii"
+  if [ -f "$CONFIG_DIR/logo-color.ascii" ]; then
+    cat "$CONFIG_DIR/logo-color.ascii"
+    rm -f "$CONFIG_DIR/logo-color.ascii"
   fi
 
   echo ""
   echo "pm was installed successfully!"
   echo "  Binary:  $BIN_DIR/pm"
-  echo "  Shell:   $INSTALL_DIR/pm.zsh"
+  echo "  Shell:   $CONFIG_DIR/pm.zsh"
   echo ""
   echo "Restart your terminal or run:"
   echo "  source ~/.zshrc"
