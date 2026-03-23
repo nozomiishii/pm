@@ -80,7 +80,8 @@ download() {
 # ---------------------------------------------------------------------------
 configure_shell() {
   local zshrc="$HOME/.zshrc"
-  local marker="# pm (project)"
+  # shellcheck disable=SC2016
+  local marker='export PATH="$HOME/.pm/bin:$PATH"'
 
   # Skip if already configured
   if [ -f "$zshrc" ] && grep -qF "$marker" "$zshrc"; then
@@ -91,7 +92,7 @@ configure_shell() {
   local config_block
   config_block=$(cat <<'BLOCK'
 
-# pm (project)
+# pm - VS Code Project Manager CLI
 export PATH="$HOME/.pm/bin:$PATH"
 source "$HOME/.pm/pm.zsh"
 BLOCK
