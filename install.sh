@@ -116,8 +116,11 @@ main() {
   download "$platform"
   configure_shell
 
+  echo ""
+  echo "You love VS Code Project Manager? So do I! Now it's in your terminal too."
+  echo ""
+
   if [ -f "$INSTALL_DIR/logo-color.ascii" ]; then
-    echo ""
     cat "$INSTALL_DIR/logo-color.ascii"
     rm -f "$INSTALL_DIR/logo-color.ascii"
   fi

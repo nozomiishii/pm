@@ -1,0 +1,75 @@
+name: Release
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-slim
+    timeout-minutes: 10
+
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4
+        with:
+          config-file: .github/.release-please-config.json
+          manifest-file: .github/.release-please-manifest.json
+
+  build-and-release:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run tests
+        run: bun run test
+
+      - name: Build binaries
+        run: |
+          mkdir -p dist
+          bun build --compile --target=bun-darwin-x64 src/cli.ts --outfile dist/pm-darwin-x64
+          bun build --compile --target=bun-darwin-arm64 src/cli.ts --outfile dist/pm-darwin-arm64
+          bun build --compile --target=bun-linux-x64 src/cli.ts --outfile dist/pm-linux-x64
+          bun build --compile --target=bun-linux-arm64 src/cli.ts --outfile dist/pm-linux-arm64
+
+      - name: Copy release assets
+        run: |
+          cp src/pm.zsh dist/pm.zsh
+          cp src/logo/logo-color.ascii dist/logo-color.ascii
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
+        with:
+          tag_name: ${{ needs.release-please.outputs.tag_name }}
+          files: |
+            dist/pm-darwin-x64
+            dist/pm-darwin-arm64
+            dist/pm-linux-x64
+            dist/pm-linux-arm64
+            dist/pm.zsh
+            dist/logo-color.ascii
