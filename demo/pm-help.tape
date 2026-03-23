@@ -2,7 +2,7 @@ Output demo/pm-help.gif
 
 Set Shell "zsh"
 Set Width 800
-Set Height 500
+Set Height 520
 Set FontSize 16
 Set Padding 20
 
