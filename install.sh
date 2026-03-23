@@ -53,6 +53,8 @@ download() {
   local binary_url="${base_url}/pm-${platform}"
   local zsh_url="${base_url}/pm.zsh"
 
+  local logo_url="${base_url}/logo-color.ascii"
+
   mkdir -p "$BIN_DIR"
 
   echo "Downloading pm for ${platform}..."
@@ -60,9 +62,11 @@ download() {
   if command -v curl >/dev/null; then
     curl -fsSL "$binary_url" -o "$BIN_DIR/pm"
     curl -fsSL "$zsh_url" -o "$INSTALL_DIR/pm.zsh"
+    curl -fsSL "$logo_url" -o "$INSTALL_DIR/logo-color.ascii" 2>/dev/null || true
   elif command -v wget >/dev/null; then
     wget -qO "$BIN_DIR/pm" "$binary_url"
     wget -qO "$INSTALL_DIR/pm.zsh" "$zsh_url"
+    wget -qO "$INSTALL_DIR/logo-color.ascii" "$logo_url" 2>/dev/null || true
   else
     echo "Error: curl or wget is required" >&2
     exit 1
@@ -111,6 +115,12 @@ main() {
 
   download "$platform"
   configure_shell
+
+  if [ -f "$INSTALL_DIR/logo-color.ascii" ]; then
+    echo ""
+    cat "$INSTALL_DIR/logo-color.ascii"
+    rm -f "$INSTALL_DIR/logo-color.ascii"
+  fi
 
   echo ""
   echo "pm was installed successfully!"

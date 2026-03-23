@@ -18,6 +18,7 @@
   },
   "scripts": {
     "build:binary": "bun build --compile src/cli.ts --outfile dist/pm",
+    "generate:logo": "bun run scripts/generate-logo-color.ts",
     "demo": "bash scripts/demo.sh",
     "test": "vitest run"
   },

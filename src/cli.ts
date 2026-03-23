@@ -10,6 +10,7 @@ import { stripEmojiLabel } from "./strip-emoji-label.js";
 import { findProject } from "./find-project.js";
 import { buildFolders } from "./generate-workspace/build-folders.js";
 import { loadExistingWorkspace } from "./generate-workspace/load-existing-workspace.js";
+import LOGO_COLOR from "./logo-color.ascii" with { type: "text" };
 
 // VS Code Project Manager 拡張のデフォルト保存先に合わせている
 // https://github.com/alefragnani/vscode-project-manager — src/utils/path.ts getFilePathFromAppData()
@@ -33,6 +34,7 @@ Commands:
   cd [name]                    Jump to a project (fzf if no name given)
   ls                           List project names
   create-workspace             Generate a .code-workspace file
+  logo                         Display the pm logo
     --name <name>              Workspace name (outputs <name>.code-workspace)
     --tag <name>               Include only projects with this tag (repeatable)
 
@@ -43,7 +45,11 @@ Options:
 Running \`pm\` without a command opens the fzf picker.`);
 }
 
-const SUBCOMMANDS = new Set(["cd", "ls", "create-workspace"]);
+function printLogo(): void {
+  console.log(LOGO_COLOR);
+}
+
+const SUBCOMMANDS = new Set(["cd", "ls", "create-workspace", "logo"]);
 
 function parseArgs(argv: string[]) {
   let config = process.env.PM_CONFIG ?? defaultConfigPath();
@@ -178,6 +184,11 @@ async function main() {
 
   if (args.help) {
     usage();
+    process.exit(0);
+  }
+
+  if (args.subcommand === "logo") {
+    printLogo();
     process.exit(0);
   }
 
