@@ -18,9 +18,11 @@
   },
   "scripts": {
     "build": "bun build --compile src/cli.ts --outfile dist/pm",
-    "demo": "bash demo/create.sh",
+    "dev": "bun run src/cli.ts",
+    "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
+    "demo:all": "bash demo/create.sh",
+    "demo:logo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs demo/logo.tape",
     "logo:colorize": "bun run src/logo/create-logo-color.ts",
-    "logo:screenshot": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs demo/logo.tape",
     "test": "vitest run"
   },
   "devDependencies": {
