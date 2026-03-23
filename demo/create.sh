@@ -7,7 +7,7 @@ set -euo pipefail
 # VHS (https://github.com/charmbracelet/vhs) を Docker 経由で
 # 実行し、各コマンドのデモ GIF を生成する。
 #
-# 使い方: bun run demo
+# 使い方: bun run demo:all
 # ============================================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
