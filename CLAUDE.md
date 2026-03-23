@@ -34,7 +34,7 @@ bun run src/cli.ts
 
 1. **`src/cli.ts`**: CLI エントリポイント。手動ループでの引数パース → サブコマンドルーティング (`cd`, `ls`, `create-workspace`)。
 2. **`src/` ユーティリティ**: 各機能は単一責務の純粋関数として分離 (`expand-home.ts`, `filter-projects.ts`, `find-project.ts`, `strip-emoji-label.ts`)。
-3. **`src/generate-workspace/`**: `.code-workspace` 生成ロジック。
+3. **`src/create-workspace/`**: `.code-workspace` 生成ロジック。
 4. **`src/pm.zsh`**: シェルラッパー。バイナリの出力がディレクトリなら現在のシェルで `cd` する + タブ補完。
 5. **`install.sh`**: curl | bash のワンライナーインストーラー。GitHub Releases からバイナリをダウンロード。
 
