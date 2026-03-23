@@ -45,6 +45,12 @@ bun run src/cli.ts
 - **`scripts/demo.sh`**: Linux バイナリのクロスコンパイル → Docker ビルド → 全テープ実行を自動化。
 - VHS はシェル起動時にプロンプト (PS1/PROMPT) をハードコードで上書きするため、Dockerfile や `Env` コマンドではプロンプトを変更できない。`Hide` + `clear` が現時点での唯一の回避策。参照: [vhs#419](https://github.com/charmbracelet/vhs/issues/419), [vhs#130](https://github.com/charmbracelet/vhs/issues/130)
 
+## Git ワークフロー
+
+- **rebase 優先**: main の最新を取り込む際は `git merge` ではなく `git rebase origin/main` を使う。マージコミットでの履歴汚染を避ける。
+- **新しい PR は最新 main から**: 新しいブランチは必ず `git fetch origin main && git checkout -b <branch> origin/main` で作成する。他の PR のコミットが混入しないようにする。
+- **force push**: rebase 後は `git push --force-with-lease` を使う。
+
 ## 重要なパターン
 
 - **ESM only**: `"type": "module"`。import には `.js` 拡張子を付ける (`import { foo } from "./foo.js"`)。Node 組み込みは `node:` プレフィックス。
