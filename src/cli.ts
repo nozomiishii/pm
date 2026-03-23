@@ -8,9 +8,9 @@ import { filterProjects } from "./filter-projects.js";
 import { expandHome } from "./expand-home.js";
 import { stripEmojiLabel } from "./strip-emoji-label.js";
 import { findProject } from "./find-project.js";
-import { buildFolders } from "./generate-workspace/build-folders.js";
-import { loadExistingWorkspace } from "./generate-workspace/load-existing-workspace.js";
-import LOGO_COLOR from "./logo-color.ascii" with { type: "text" };
+import { buildFolders } from "./create-workspace/build-folders.js";
+import { loadExistingWorkspace } from "./create-workspace/load-existing-workspace.js";
+import LOGO_COLOR from "./logo/logo-color.ascii" with { type: "text" };
 
 // VS Code Project Manager 拡張のデフォルト保存先に合わせている
 // https://github.com/alefragnani/vscode-project-manager — src/utils/path.ts getFilePathFromAppData()
