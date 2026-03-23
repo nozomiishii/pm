@@ -22,10 +22,13 @@ bun run build
 # npm パッケージ用のビルドは prepublishOnly に記述する (npm publish 時に自動実行される)
 
 # デモ GIF を生成 (Docker 経由)
-bun run demo
+bun run demo:all
+
+# 個別のデモを生成
+bun demo demo/logo.tape
 
 # ローカルで CLI を実行
-bun run src/cli.ts
+bun dev logo
 ```
 
 ## アーキテクチャ概要

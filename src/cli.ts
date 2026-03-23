@@ -33,8 +33,8 @@ function usage(): void {
 Commands:
   cd [name]                    Jump to a project (fzf if no name given)
   ls                           List project names
-  create-workspace             Generate a .code-workspace file
   logo                         Display the pm logo
+  create-workspace             Generate a .code-workspace file
     --name <name>              Workspace name (outputs <name>.code-workspace)
     --tag <name>               Include only projects with this tag (repeatable)
 
