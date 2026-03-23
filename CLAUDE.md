@@ -51,6 +51,11 @@ bun run src/cli.ts
 - **新しい PR は最新 main から**: 新しいブランチは必ず `git fetch origin main && git checkout -b <branch> origin/main` で作成する。他の PR のコミットが混入しないようにする。
 - **force push**: rebase 後は `git push --force-with-lease` を使う。
 
+## GitHub Actions ワークフロー命名規則
+
+- **`_` プレフィックス付き** (`_actionlint.yaml`, `_secretlint.yaml` 等): 他プロジェクトでも共通で使う汎用ワークフロー。
+- **`_` プレフィックスなし** (`test.yaml` 等): このプロジェクト固有のワークフロー。
+
 ## 重要なパターン
 
 - **ESM only**: `"type": "module"`。import には `.js` 拡張子を付ける (`import { foo } from "./foo.js"`)。Node 組み込みは `node:` プレフィックス。
