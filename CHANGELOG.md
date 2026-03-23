@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.2](https://github.com/nozomiishii/pm/compare/v0.1.1...v0.1.2) (2026-03-23)
+
+
+### Features
+
+* add uninstall command and uninstall.sh ([#15](https://github.com/nozomiishii/pm/issues/15)) ([154c58b](https://github.com/nozomiishii/pm/commit/154c58b1bb8fb809e886eafe74143704dc54f839))
+
+
+### Bug Fixes
+
+* use PATH export as shell config marker instead of comment ([#12](https://github.com/nozomiishii/pm/issues/12)) ([73e0eae](https://github.com/nozomiishii/pm/commit/73e0eae696b48dacae203f6bf82d40dc555ce4bd))
+
 ## [0.1.1](https://github.com/nozomiishii/pm/compare/v0.1.0...v0.1.1) (2026-03-23)
 
 
