@@ -84,6 +84,9 @@ unconfigure_shell() {
   # Delete the block: comment line through source line
   sed '/^# pm - VS Code Project Manager CLI$/,/^source .*\/pm\/pm\.zsh"$/d' "$zshrc" > "$tmp"
 
+  # Remove PM_CONFIG export if present
+  sed -i'' '/^export PM_CONFIG=.*$/d' "$tmp"
+
   # Squeeze consecutive blank lines
   cat -s "$tmp" > "$zshrc"
   rm -f "$tmp"

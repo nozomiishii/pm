@@ -130,6 +130,9 @@ main() {
   echo "  Binary:  $BIN_DIR/pm"
   echo "  Shell:   $CONFIG_DIR/pm.zsh"
   echo ""
+  echo "If your projects.json is not in the default location, add to .zshrc:"
+  echo "  export PM_CONFIG=\"\$HOME/path/to/projects.json\""
+  echo ""
   echo "Restart your terminal or run:"
   echo "  source ~/.zshrc"
 }
