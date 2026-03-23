@@ -50,6 +50,30 @@ bun dev logo
 - **`scripts/demo.sh`**: Linux バイナリのクロスコンパイル → Docker ビルド → 全テープ実行を自動化。
 - VHS はシェル起動時にプロンプト (PS1/PROMPT) をハードコードで上書きするため、Dockerfile や `Env` コマンドではプロンプトを変更できない。`Hide` + `clear` が現時点での唯一の回避策。参照: [vhs#419](https://github.com/charmbracelet/vhs/issues/419), [vhs#130](https://github.com/charmbracelet/vhs/issues/130)
 
+## インストール・配布設計
+
+### XDG Base Directory 準拠
+
+ユーザー環境へのファイル配置は XDG Base Directory に従う。
+
+| 種類 | パス | 環境変数 |
+|------|------|---------|
+| バイナリ | `~/.local/bin/pm` | `XDG_BIN_HOME` |
+| シェルラッパー・設定 | `~/.config/pm/` | `XDG_CONFIG_HOME` |
+
+### ビルド・配布チャネル
+
+| チャネル | ビルドコマンド | 備考 |
+|---------|-------------|------|
+| バイナリ (curl \| bash) | `bun run build` | Bun クロスコンパイル。CI で 4 プラットフォーム分ビルド |
+| npm | `prepublishOnly` に記述 | `npm publish` 時に自動実行 |
+| Homebrew | CI ワークフローで対応 | package.json には含めない |
+
+### install.sh の設計ルール
+
+- `.zshrc` への重複追記防止には `source` 行をマーカーとして使う（コメントはユーザーに削除される可能性がある）
+- XDG 環境変数のフォールバックは常に記述する: `${XDG_CONFIG_HOME:-$HOME/.config}`
+
 ## Git ワークフロー
 
 - **rebase 優先**: main の最新を取り込む際は `git merge` ではなく `git rebase origin/main` を使う。マージコミットでの履歴汚染を避ける。
