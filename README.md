@@ -1,6 +1,6 @@
 # pm - VS Code Project Manager CLI
 
-[日本語](README.ja.md)
+English | [日本語](./README.ja.md)
 
 <br>
 <div align="center">
