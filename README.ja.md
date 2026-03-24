@@ -32,6 +32,8 @@ sudo pacman -S fzf
 
 ## Install
 
+### macOS/Linux (推奨)
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/nozomiishii/pm/main/install.sh | bash
 ```
@@ -39,6 +41,12 @@ curl -fsSL https://raw.githubusercontent.com/nozomiishii/pm/main/install.sh | ba
 `pm`のバイナリが `~/.pm/bin/pm` にダウンロードされ、`pm`を呼び出すラッパースクリプトが `~/.pm/pm.zsh` に配置されます。`.zshrc` への設定も自動で追加されます。
 
 ターミナルを再起動するか、`source ~/.zshrc` を実行すると`pm`が使えるようになります。
+
+### npm
+
+```sh
+npm install -g @nozomiishii/pm
+```
 
 ## Uninstall
 
