@@ -10,6 +10,7 @@ import { findProject } from "./find-project.js";
 import { buildFolders } from "./create-workspace/build-folders.js";
 import { loadExistingWorkspace } from "./create-workspace/load-existing-workspace.js";
 import LOGO_COLOR from "./logo/logo-color.ascii" with { type: "text" };
+import packageJson from "../package.json";
 
 // VS Code Project Manager 拡張のデフォルト保存先に合わせている
 // https://github.com/alefragnani/vscode-project-manager — src/utils/path.ts getFilePathFromAppData()
@@ -41,6 +42,7 @@ Commands:
 Options:
   --config <path>              Path to projects.json (or PM_CONFIG)
   --help                       Show this help
+  --version                    Show version
 
 Running \`pm\` without a command opens the fzf picker.`);
 }
@@ -54,6 +56,7 @@ const SUBCOMMANDS = new Set(["cd", "ls", "create-workspace", "logo", "uninstall"
 function parseArgs(argv: string[]) {
   let config = process.env.PM_CONFIG ?? defaultConfigPath();
   let help = false;
+  let version = false;
   let subcommand: string | undefined;
   const rest: string[] = [];
 
@@ -63,6 +66,8 @@ function parseArgs(argv: string[]) {
       config = argv[++i] ?? "";
     } else if (arg === "--help") {
       help = true;
+    } else if (arg === "--version") {
+      version = true;
     } else if (!subcommand && SUBCOMMANDS.has(arg)) {
       subcommand = arg;
     } else {
@@ -70,7 +75,7 @@ function parseArgs(argv: string[]) {
     }
   }
 
-  return { config, help, subcommand, rest };
+  return { config, help, version, subcommand, rest };
 }
 
 function parseCreateWorkspaceArgs(rest: string[]) {
@@ -181,6 +186,11 @@ async function jumpToProject(projects: Project[], name?: string): Promise<void> 
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+
+  if (args.version) {
+    console.log(packageJson.version);
+    process.exit(0);
+  }
 
   if (args.help) {
     usage();
