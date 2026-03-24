@@ -14,10 +14,16 @@
   "license": "MIT",
   "author": "Nozomi Ishii",
   "bin": {
-    "pm": "./src/cli.ts"
+    "pm": "./dist/cli.js"
   },
+  "files": [
+    "dist/cli.js",
+    "src/pm.zsh"
+  ],
   "scripts": {
     "build": "bun build --compile src/cli.ts --outfile dist/pm",
+    "prepublishOnly": "bun build src/cli.ts --outfile dist/cli.js --target=node",
+    "typecheck": "tsc --noEmit",
     "dev": "bun run src/cli.ts",
     "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
     "demo:all": "bash demo/create.sh",
@@ -30,6 +36,10 @@
   "devDependencies": {
     "@types/node": "22.19.15",
     "vitest": "4.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "packageManager": "bun@1.3.11",
   "engines": {
