@@ -5,7 +5,9 @@
   "bump-patch-for-minor-pre-major": true,
   "packages": {
     ".": {
-      "release-type": "node"
+      "release-type": "node",
+      "component": "",
+      "pull-request-title-pattern": "chore: release ${version}"
     }
   }
 }
