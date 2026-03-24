@@ -40,51 +40,38 @@ release-please → リリース作成 → npm-publish ジョブ実行 → npm pu
 }
 ```
 
-## 認証方式
+## 認証方式: Trusted Publishers / OIDC
 
-### NPM_TOKEN（初回パブリッシュ）
+OIDC で短命トークンを自動発行する仕組み。シークレット管理が不要で、provenance attestation も自動付与される。
 
-初回は npm アクセストークンを GitHub Secrets に `NPM_TOKEN` として保存し、`NODE_AUTH_TOKEN` 環境変数で渡す。
+設定は初回パブリッシュ後に npm の Web UI から行う（手順は後述）。
 
-初回のみトークンが必要な理由は、Trusted Publishers がパッケージの存在を前提とするため。
+### 初回パブリッシュ
 
-**トークン発行手順:**
+npm にパッケージが存在しない状態では Trusted Publishers を設定できない（鶏と卵問題）。初回は以下の手順でローカルから手動 publish し、その後 Trusted Publishers を設定する。
 
-1. https://www.npmjs.com/settings/nozomiishii/tokens にアクセス
-2. **Generate New Token** → **Granular Access Token** を選択
-3. 設定:
-   - **Token name**: 識別しやすい名前（例: `pm-github-actions`）
-   - **Expiration**: 短め推奨（Trusted Publishers 移行後は削除するため）
-   - **Packages and scopes**: `@nozomiishii/pm` のみに制限
-   - **Permissions**: **Read and write**（publish に必要）
-4. トークンをコピー
-5. GitHub リポジトリの Settings → Secrets and variables → Actions で `NPM_TOKEN` として登録
-   - URL: `https://github.com/nozomiishii/pm/settings/secrets/actions`
+この制約の OIDC 対応は [npm/cli #8544](https://github.com/npm/cli/issues/8544) で議論中（npm チームは「MVP から意図的に除外、引き続き検討」と回答）。
 
-### Trusted Publishers / OIDC（2回目以降）
+**手順:**
 
-OIDC で短命トークンを自動発行する仕組み。シークレット管理が不要になり、provenance attestation も自動付与される。
-
-**移行手順:**
-
-1. npm の設定画面で Trusted Publishers を登録
+1. ローカルで npm にログイン（ブラウザ認証が開く）
+   ```sh
+   npm login
+   ```
+2. 初回 publish を実行
+   ```sh
+   npm publish --no-provenance
+   ```
+   `--no-provenance` は `package.json` の `publishConfig.provenance: true` を上書きして provenance を無効化する。provenance は「どの CI のどのワークフローからビルドされたか」を OIDC で証明する仕組みで、CI 環境（GitHub Actions 等）でしか生成できない。ローカルから publish する場合はこのフラグが必要。
+3. npm の設定画面で Trusted Publishers を登録
    - URL: `https://www.npmjs.com/package/@nozomiishii/pm/access`
    - Organization or user: `nozomiishii`
    - Repository: `pm`
    - Workflow filename: `release.yaml`
-2. `release.yaml` から `NODE_AUTH_TOKEN` の env を削除
-3. GitHub Secrets から `NPM_TOKEN` を削除
-
-### 初回パブリッシュの制約
-
-npm にパッケージが存在しない状態では Trusted Publishers を設定できない（鶏と卵問題）。PyPI は作成前に設定可能だが、npm は未対応。
-
-**ワークアラウンド:**
-
-- ローカルから `npm login` → `npm publish`
-- [setup-npm-trusted-publish](https://github.com/azu/setup-npm-trusted-publish) でプレースホルダーを先に publish
-
-初回パブリッシュの OIDC 対応は [npm/cli #8544](https://github.com/npm/cli/issues/8544) で議論中（npm チームは「MVP から意図的に除外、引き続き検討」と回答）。
+4. 同じページの **Publishing access** で **"Require two-factor authentication and disallow tokens (recommended)"** を選択
+   - Trusted Publishers はどちらの設定でも動作する
+   - disallow tokens にすることで、トークン漏洩による不正 publish を完全にブロックできる
+5. 以降は CI の release-please → npm-publish ジョブで自動 publish される
 
 ## 参考リンク
 
