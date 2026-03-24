@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/nozomiishii/pm/compare/v0.1.2...v0.1.3) (2026-03-24)
+
+
+### Features
+
+* add PM_CONFIG hint to post-install message ([#16](https://github.com/nozomiishii/pm/issues/16)) ([56c576d](https://github.com/nozomiishii/pm/commit/56c576df0be78281740e2d528c7d70b7fddb0bd7))
+* update README language links to show all languages ([#21](https://github.com/nozomiishii/pm/issues/21)) ([514f6a4](https://github.com/nozomiishii/pm/commit/514f6a4cf60a0d910b37a632ad81be08ce61d650))
+
 ## [0.1.2](https://github.com/nozomiishii/pm/compare/v0.1.1...v0.1.2) (2026-03-23)
 
 
