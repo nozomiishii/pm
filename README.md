@@ -75,6 +75,7 @@ Commands:
 Options:
   --config <path>              Path to projects.json (or PM_CONFIG)
   --help                       Show this help
+  --version                    Show version
 
 Running `pm` without a command opens the fzf picker.
 ```
