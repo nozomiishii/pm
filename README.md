@@ -32,6 +32,8 @@ sudo pacman -S fzf
 
 ## Install
 
+### Shell script (recommended)
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/nozomiishii/pm/main/install.sh | bash
 ```
@@ -39,6 +41,12 @@ curl -fsSL https://raw.githubusercontent.com/nozomiishii/pm/main/install.sh | ba
 The `pm` binary is downloaded to `~/.pm/bin/pm`, and the wrapper script that calls `pm` is placed at `~/.pm/pm.zsh`. The `.zshrc` configuration is added automatically.
 
 Restart your terminal or run `source ~/.zshrc` to start using pm.
+
+### npm
+
+```sh
+npm install -g @nozomiishii/pm
+```
 
 ## Uninstall
 

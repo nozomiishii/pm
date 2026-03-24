@@ -1,6 +1,6 @@
 {
   "name": "@nozomiishii/pm",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Project manager CLI — jump to projects via fzf",
   "type": "module",
   "homepage": "https://github.com/nozomiishii/pm#readme",
@@ -14,10 +14,17 @@
   "license": "MIT",
   "author": "Nozomi Ishii",
   "bin": {
-    "pm": "./src/cli.ts"
+    "pm": "./dist/cli.js"
   },
+  "files": [
+    "dist/cli.js",
+    "src/pm.zsh"
+  ],
   "scripts": {
     "build": "bun build --compile src/cli.ts --outfile dist/pm",
+    "build:npm": "bun build src/cli.ts --outfile dist/cli.js --target=node && bun -e \"await Bun.write('dist/cli.js', (await Bun.file('dist/cli.js').text()).replace('#!/usr/bin/env bun\\n// @bun\\n', '#!/usr/bin/env node\\n'))\"",
+    "prepublishOnly": "bun run build:npm",
+    "typecheck": "tsc --noEmit",
     "dev": "bun run src/cli.ts",
     "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
     "demo:all": "bash demo/create.sh",
