@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/nozomiishii/pm/compare/v0.1.3...v0.1.4) (2026-03-25)
+
+
+### Bug Fixes
+
+* remove component prefix from release tags ([#29](https://github.com/nozomiishii/pm/issues/29)) ([62b436d](https://github.com/nozomiishii/pm/commit/62b436ded1cd1495dc8f2aeb686ff92d03551067))
+
 ## [0.1.3](https://github.com/nozomiishii/pm/compare/pm-v0.1.2...pm-v0.1.3) (2026-03-24)
 
 
