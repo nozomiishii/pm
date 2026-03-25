@@ -3,11 +3,11 @@
   "bootstrap-sha": "3f1baf7e59a59712e147b360c40a54d04c43287a",
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
+  "include-component-in-tag": false,
+  "pull-request-title-pattern": "chore: release ${version}",
   "packages": {
     ".": {
-      "release-type": "node",
-      "component": "",
-      "pull-request-title-pattern": "chore: release ${version}"
+      "release-type": "node"
     }
   }
 }
