@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/nozomiishii/pm/compare/v0.1.5...v0.1.6) (2026-04-01)
+
+
+### Bug Fixes
+
+* add shebang to npm build output ([#35](https://github.com/nozomiishii/pm/issues/35)) ([aaac401](https://github.com/nozomiishii/pm/commit/aaac4018db642375c6d3908d608a4e75e53af107))
+
 ## [0.1.5](https://github.com/nozomiishii/pm/compare/v0.1.4...v0.1.5) (2026-03-29)
 
 
