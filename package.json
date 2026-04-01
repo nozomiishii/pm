@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "build": "bun build --compile src/cli.ts --outfile dist/pm",
-    "prepublishOnly": "bun build src/cli.ts --outfile dist/cli.js --target=node",
+    "prepublishOnly": "bun build src/cli.ts --outfile dist/cli.js --target=node --banner '#!/usr/bin/env node'",
     "typecheck": "tsc --noEmit",
     "dev": "bun run src/cli.ts",
     "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
