@@ -30,7 +30,7 @@ jobs:
         with:
           filters: |
             workflows:
-              - '.github/**/*.yml'
+              - '.github/**/*.yaml'
 
       - name: Check workflow files
         if: steps.changes.outputs.workflows == 'true'
