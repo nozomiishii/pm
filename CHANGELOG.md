@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.7](https://github.com/nozomiishii/pm/compare/v0.1.6...v0.1.7) (2026-04-02)
+
+
+### Features
+
+* add bunfig.toml with minimumReleaseAge for supply chain protection ([#38](https://github.com/nozomiishii/pm/issues/38)) ([d32af9d](https://github.com/nozomiishii/pm/commit/d32af9dcb2dcf6d99857f89e5f46974ebdd3af06))
+* use GitHub App token for release-please to trigger CI on PRs ([#42](https://github.com/nozomiishii/pm/issues/42)) ([453272b](https://github.com/nozomiishii/pm/commit/453272bada78c170f084f209aa3433a31948a13a))
+
 ## [0.1.6](https://github.com/nozomiishii/pm/compare/v0.1.5...v0.1.6) (2026-04-01)
 
 
