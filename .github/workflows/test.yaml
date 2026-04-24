@@ -20,14 +20,21 @@ defaults:
   run:
     shell: bash
 
+# デフォルト権限を無効化し、各ジョブで必要最小限の権限のみ付与する
+permissions: {}
+
 jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read  # required by actions/checkout to fetch repository code
 
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Check for changes
         uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
