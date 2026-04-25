@@ -1,15 +1,6 @@
 name: Test
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - 'tsconfig.json'
-      - 'bun.lock'
   pull_request:
 
 concurrency:
