@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.8](https://github.com/nozomiishii/pm/compare/v0.1.7...v0.1.8) (2026-04-25)
+
+
+### Bug Fixes
+
+* **ci:** scope github-actions trigger to pull_request only ([#72](https://github.com/nozomiishii/pm/issues/72)) ([8a3e985](https://github.com/nozomiishii/pm/commit/8a3e985c4594ba618ac546af819ca4bd44baff3f))
+* **ci:** scope test trigger to pull_request only ([#73](https://github.com/nozomiishii/pm/issues/73)) ([33d1b0e](https://github.com/nozomiishii/pm/commit/33d1b0e22dccd1f19b5b31aa1b2915c6339fd02a))
+* forbid BREAKING CHANGE footer for ops-only changes ([#74](https://github.com/nozomiishii/pm/issues/74)) ([97fe570](https://github.com/nozomiishii/pm/commit/97fe570f0cb83649c46fa2c2f490dd5ed7550c0b))
+* update shared CI workflows to v1.1.1 and add pull-requests read ([#46](https://github.com/nozomiishii/pm/issues/46)) ([555cd56](https://github.com/nozomiishii/pm/commit/555cd563ea030776c38e7b4ebf3f08f1043dc589))
+
 ## [0.1.7](https://github.com/nozomiishii/pm/compare/v0.1.6...v0.1.7) (2026-04-02)
 
 
