@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/nozomiishii/pm/compare/v0.1.8...v0.2.0) (2026-05-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* pm create-workspace subcommand has been removed.
+
+### Features
+
+* remove create-workspace command ([#76](https://github.com/nozomiishii/pm/issues/76)) ([ebd51f8](https://github.com/nozomiishii/pm/commit/ebd51f83983a7e4b528aad2cc1f47911f28a5e61))
+
 ## [0.1.8](https://github.com/nozomiishii/pm/compare/v0.1.7...v0.1.8) (2026-04-25)
 
 
