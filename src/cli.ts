@@ -1,14 +1,12 @@
 import { existsSync } from "node:fs";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { spawn } from "node:child_process";
-import type { CodeWorkspace, Project } from "./types.js";
+import type { Project } from "./types.js";
 import { filterProjects } from "./filter-projects.js";
 import { expandHome } from "./expand-home.js";
 import { stripEmojiLabel } from "./strip-emoji-label.js";
 import { findProject } from "./find-project.js";
-import { buildFolders } from "./create-workspace/build-folders.js";
-import { loadExistingWorkspace } from "./create-workspace/load-existing-workspace.js";
 import LOGO_COLOR from "./logo/logo-color.ascii" with { type: "text" };
 import packageJson from "../package.json";
 
@@ -35,9 +33,6 @@ Commands:
   ls                           List project names
   logo                         Display the pm logo
   uninstall                    Uninstall pm from your system
-  create-workspace             Generate a .code-workspace file
-    --name <name>              Workspace name (outputs <name>.code-workspace)
-    --tag <name>               Include only projects with this tag (repeatable)
 
 Options:
   --config <path>              Path to projects.json (or PM_CONFIG)
@@ -51,7 +46,7 @@ function printLogo(): void {
   console.log(LOGO_COLOR);
 }
 
-const SUBCOMMANDS = new Set(["cd", "ls", "create-workspace", "logo", "uninstall"]);
+const SUBCOMMANDS = new Set(["cd", "ls", "logo", "uninstall"]);
 
 function parseArgs(argv: string[]) {
   let config = process.env.PM_CONFIG ?? defaultConfigPath();
@@ -76,22 +71,6 @@ function parseArgs(argv: string[]) {
   }
 
   return { config, help, version, subcommand, rest };
-}
-
-function parseCreateWorkspaceArgs(rest: string[]) {
-  let workspaceName = "";
-  const tags: string[] = [];
-
-  for (let i = 0; i < rest.length; i++) {
-    const arg = rest[i]!;
-    if (arg === "--name") {
-      workspaceName = rest[++i] ?? "";
-    } else if (arg === "--tag") {
-      tags.push(rest[++i] ?? "");
-    }
-  }
-
-  return { workspaceName, tags };
 }
 
 function plainLabel(name: string): string {
@@ -132,30 +111,6 @@ function fzfSelect(projects: Project[]): Promise<Project | undefined> {
       }
     });
   });
-}
-
-function resolveCliPath(p: string): string {
-  return path.isAbsolute(p) ? path.normalize(p) : path.resolve(process.cwd(), p);
-}
-
-async function createWorkspace(
-  projects: Project[],
-  args: { workspaceName: string; tags: string[] },
-): Promise<void> {
-  if (!args.workspaceName) {
-    console.error("Error: --name is required with create-workspace.");
-    process.exit(1);
-  }
-
-  const workspacePath = resolveCliPath(`${args.workspaceName}.code-workspace`);
-  const workspaceDir = path.dirname(path.resolve(workspacePath));
-
-  const folders = buildFolders(projects, { tags: args.tags, workspaceDir });
-  const preserved = await loadExistingWorkspace(workspacePath);
-  const out: CodeWorkspace = { ...preserved, folders };
-
-  await writeFile(workspacePath, JSON.stringify(out, null, 2) + "\n", "utf8");
-  console.log(`Wrote ${workspacePath} (${folders.length} folders)`);
 }
 
 async function jumpToProject(projects: Project[], name?: string): Promise<void> {
@@ -222,11 +177,6 @@ async function main() {
   const allProjects: Project[] = JSON.parse(raw);
 
   switch (args.subcommand) {
-    case "create-workspace": {
-      const cwArgs = parseCreateWorkspaceArgs(args.rest);
-      await createWorkspace(allProjects, cwArgs);
-      break;
-    }
     case "ls": {
       const projects = filterProjects(allProjects, []);
       for (const p of projects) {

@@ -68,9 +68,6 @@ Commands:
   ls                           List project names
   logo                         Display the pm logo
   uninstall                    Uninstall pm from your system
-  create-workspace             Generate a .code-workspace file
-    --name <name>              Workspace name (outputs <name>.code-workspace)
-    --tag <name>               Include only projects with this tag (repeatable)
 
 Options:
   --config <path>              Path to projects.json (or PM_CONFIG)
@@ -115,43 +112,6 @@ pm ls
 ```
 
 ![pm ls](demo/pm-ls.gif)
-
-### pm create-workspace
-
-Bundles projects matching a `--tag` into a `.code-workspace` file.
-
-```sh
-pm create-workspace --name <name> --tag <tag>
-```
-
-For example, given the following `projects.json`:
-
-```json
-[
-  { "name": "dotfiles",  "rootPath": "~/Code/nozomiishii/dotfiles",  "tags": ["personal"] },
-  { "name": "portfolio", "rootPath": "~/Code/nozomiishii/portfolio", "tags": ["personal"] },
-  { "name": "fzf",       "rootPath": "~/Code/junegunn/fzf",         "tags": ["oss"]      }
-]
-```
-
-Running the following command:
-
-```sh
-pm create-workspace --name my-workspace --tag personal
-```
-
-Generates `my-workspace.code-workspace`:
-
-```json
-{
-  "folders": [
-    { "name": "dotfiles",  "path": "../nozomiishii/dotfiles" },
-    { "name": "portfolio", "path": "../nozomiishii/portfolio" }
-  ]
-}
-```
-
-`--tag` can be specified multiple times — only projects matching all tags are included.
 
 ## Configuration
 
