@@ -68,9 +68,6 @@ Commands:
   ls                           List project names
   logo                         Display the pm logo
   uninstall                    Uninstall pm from your system
-  create-workspace             Generate a .code-workspace file
-    --name <name>              Workspace name (outputs <name>.code-workspace)
-    --tag <name>               Include only projects with this tag (repeatable)
 
 Options:
   --config <path>              Path to projects.json (or PM_CONFIG)
@@ -115,43 +112,6 @@ pm ls
 ```
 
 ![pm ls](demo/pm-ls.gif)
-
-### pm create-workspace
-
-`--tag` で指定したタグのプロジェクトを `.code-workspace` ファイルにまとめます。
-
-```sh
-pm create-workspace --name <name> --tag <tag>
-```
-
-たとえば `projects.json` に以下のプロジェクトがある場合:
-
-```json
-[
-  { "name": "dotfiles",  "rootPath": "~/Code/nozomiishii/dotfiles",  "tags": ["personal"] },
-  { "name": "portfolio", "rootPath": "~/Code/nozomiishii/portfolio", "tags": ["personal"] },
-  { "name": "fzf",       "rootPath": "~/Code/junegunn/fzf",         "tags": ["oss"]      }
-]
-```
-
-次のコマンドを実行することで
-
-```sh
-pm create-workspace --name my-workspace --tag personal
-```
-
-`my-workspace.code-workspace` が生成されます:
-
-```json
-{
-  "folders": [
-    { "name": "dotfiles",  "path": "../nozomiishii/dotfiles" },
-    { "name": "portfolio", "path": "../nozomiishii/portfolio" }
-  ]
-}
-```
-
-`--tag` は複数指定でき、すべてのタグを持つプロジェクトだけが含まれます。
 
 ## Configuration
 
