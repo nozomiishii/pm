@@ -1,0 +1,7 @@
+# @see https://github.com/nozomiishii/configs/blob/main/packages/lefthook-config/README.md
+# 当面 .yml 拡張子の禁止のみ。commitlint 等の他フラグメントは pm に独自設定が無いため未採用。
+extends:
+  - ./node_modules/@nozomiishii/lefthook-config/hooks/pre-commit/lint/file-extension/yaml.yaml
+
+pre-commit:
+  parallel: true
