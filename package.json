@@ -23,6 +23,7 @@
   "scripts": {
     "build": "bun build --compile src/cli.ts --outfile dist/pm",
     "prepublishOnly": "bun build src/cli.ts --outfile dist/cli.js --target=node --banner '#!/usr/bin/env node'",
+    "prepare": "lefthook install --force",
     "typecheck": "tsc --noEmit",
     "dev": "bun run src/cli.ts",
     "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
@@ -34,7 +35,10 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@nozomiishii/commitlint-config": "0.2.0",
+    "@nozomiishii/lefthook-config": "0.6.0",
     "@types/node": "25.6.0",
+    "lefthook": "2.1.6",
     "vitest": "4.1.5"
   },
   "publishConfig": {
