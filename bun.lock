@@ -5,8 +5,8 @@
     "": {
       "name": "@nozomiishii/pm",
       "devDependencies": {
-        "@nozomiishii/commitlint-config": "1.0.0",
-        "@nozomiishii/lefthook-config": "1.0.0",
+        "@nozomiishii/commitlint-config": "1.0.1",
+        "@nozomiishii/lefthook-config": "1.0.1",
         "@types/node": "25.6.0",
         "lefthook": "2.1.6",
         "vitest": "4.1.5",
@@ -64,9 +64,9 @@
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.1", "", { "dependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1", "@tybys/wasm-util": "^0.10.1" } }, "sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A=="],
 
-    "@nozomiishii/commitlint-config": ["@nozomiishii/commitlint-config@1.0.0", "", { "dependencies": { "@commitlint/cli": "20.5.3", "@commitlint/config-conventional": "20.5.3", "@commitlint/types": "20.5.0" }, "bin": { "nozo-commitlint": "./dist/cli.js", "nozo-commitlint-init": "./dist/init.js" } }, "sha512-VpQ08KGOwJY8jlFARne/Wg0TGnTD8K1eudPvZlTrIVbF2yThwb64l4jFQpcEN2EHCCd4C/ms+YmRbdcfcUpqgA=="],
+    "@nozomiishii/commitlint-config": ["@nozomiishii/commitlint-config@1.0.1", "", { "dependencies": { "@commitlint/cli": "20.5.3", "@commitlint/config-conventional": "20.5.3", "@commitlint/types": "20.5.0" }, "bin": { "nozo-commitlint": "./dist/cli.js", "nozo-commitlint-init": "./dist/init/bin.js" } }, "sha512-ya4Gxh7+29rYZ8DuFA9yS5O4G7qHt2NUU5lhj7pInIU6+4+VpJj7gRjyBnUcSWkPK895v9cs7m6mh4oFrVKNKA=="],
 
-    "@nozomiishii/lefthook-config": ["@nozomiishii/lefthook-config@1.0.0", "", { "dependencies": { "git-harvest": "0.1.25" }, "peerDependencies": { "lefthook": "2.1.6" }, "bin": { "nozo-git-harvest": "./dist/cli.js", "nozo-lefthook-init": "./dist/init.js" } }, "sha512-z/rueKMJ5nKZu/uiIdPxNbTBF4PFloUcHbpa72BHKjHVEZcqmXclTvQMJz3gnb0LRmg7NbwfgDSkBzmYe4Wrbw=="],
+    "@nozomiishii/lefthook-config": ["@nozomiishii/lefthook-config@1.0.1", "", { "dependencies": { "git-harvest": "0.1.25" }, "peerDependencies": { "lefthook": "2.1.6" }, "bin": { "nozo-git-harvest": "./dist/cli.js", "nozo-lefthook-init": "./dist/init/bin.js" } }, "sha512-AXE8dVnuHezOf6yD2RnUC2H2RivpXzZF7G7f2hsX18GY1fktB54nVmBWFeaLIgOp6nYt7I8wZfRoG8aejJeqXQ=="],
 
     "@oxc-project/types": ["@oxc-project/types@0.120.0", "", {}, "sha512-k1YNu55DuvAip/MGE1FTsIuU3FUCn6v/ujG9V7Nq5Df/kX2CWb13hhwD0lmJGMGqE+bE1MXvv9SZVnMzEXlWcg=="],
 
