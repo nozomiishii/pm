@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/nozomiishii/pm/compare/v0.2.0...v0.2.1) (2026-05-10)
+
+
+### Features
+
+* show README preview in fzf picker ([#86](https://github.com/nozomiishii/pm/issues/86)) ([0e44d7f](https://github.com/nozomiishii/pm/commit/0e44d7faf7cdc2c67a66ae0f87e60a64b033959f))
+
 ## [0.2.0](https://github.com/nozomiishii/pm/compare/v0.1.8...v0.2.0) (2026-05-01)
 
 
