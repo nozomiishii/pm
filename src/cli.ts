@@ -79,17 +79,26 @@ function plainLabel(name: string): string {
 
 function fzfSelect(projects: Project[]): Promise<Project | undefined> {
   return new Promise((resolve, reject) => {
-    const labels = projects.map((p) => plainLabel(p.name));
-    const proc = spawn("fzf", [], {
-      stdio: ["pipe", "pipe", "inherit"],
-    });
+    const lines = projects.map((p) => `${plainLabel(p.name)}\t${expandHome(p.rootPath)}`);
+    const proc = spawn(
+      "fzf",
+      [
+        "--delimiter=\t",
+        "--with-nth=1",
+        "--preview",
+        "bat --color=always --style=header,grid --line-range :80 {2}/README.* 2>/dev/null || echo 'No README found'",
+      ],
+      {
+        stdio: ["pipe", "pipe", "inherit"],
+      },
+    );
 
     let stdout = "";
     proc.stdout.on("data", (d: Buffer) => {
       stdout += d.toString();
     });
 
-    proc.stdin.write(labels.join("\n") + "\n");
+    proc.stdin.write(lines.join("\n") + "\n");
     proc.stdin.end();
 
     proc.on("close", (code) => {
@@ -98,7 +107,7 @@ function fzfSelect(projects: Project[]): Promise<Project | undefined> {
         return;
       }
       const selected = stdout.trim();
-      const idx = labels.indexOf(selected);
+      const idx = lines.indexOf(selected);
       resolve(idx >= 0 ? projects[idx] : undefined);
     });
 
