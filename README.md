@@ -157,6 +157,20 @@ pm() {
 
 This mechanism also provides tab completion for project names.
 
+## Tips
+
+### Launch with a Ghostty keybind
+
+If you use [Ghostty](https://ghostty.org), add the following line to your config to launch `pm` with a single keybind.
+
+```
+keybind = super+alt+j=text:pm\n
+```
+
+Pressing `super+alt+j` sends `pm` + Enter to the current terminal, instantly opening the fzf picker.
+
+The config file path differs by OS, so see the [Configuration page in the Ghostty docs](https://ghostty.org/docs/config) for the exact location.
+
 ## Acknowledgments
 
 pm is heavily inspired by these projects. Thank you so much for boosting my productivity.
