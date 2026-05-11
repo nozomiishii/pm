@@ -157,6 +157,20 @@ pm() {
 
 この仕組みにより、プロジェクト名のタブ補完もサポートしています。
 
+## Tips
+
+### Ghostty のキーバインドで一発起動
+
+[Ghostty](https://ghostty.org) を使っている場合、設定ファイルに次の行を追加するとキーバインド一発で `pm` を起動できます。
+
+```
+keybind = super+alt+j=text:pm\n
+```
+
+`super+alt+j` を押すと現在のターミナルへ `pm` + Enter が送信され、fzf ピッカーが即座に開きます。
+
+設定ファイルのパスは OS によって異なるので、[Ghostty 公式ドキュメントの Configuration](https://ghostty.org/docs/config) を参照してください。
+
 ## 謝辞
 
 pm は以下のプロジェクトから大きな影響を受けています。僕の生産性を上げてくれて本当にありがとうございます
