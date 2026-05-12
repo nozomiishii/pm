@@ -1,8 +1,8 @@
 Output demo/pm.gif
 
 Set Shell "zsh"
-Set Width 800
-Set Height 400
+Set Width 1200
+Set Height 500
 Set FontSize 16
 Set Padding 20
 
@@ -34,10 +34,10 @@ Sleep 500ms
 Type "pm"
 Sleep 500ms
 Enter
-Sleep 1s
+Sleep 1.5s
 
 Type "po"
-Sleep 500ms
+Sleep 2s
 
 Enter
 Sleep 1.5s
