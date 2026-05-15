@@ -2,14 +2,6 @@
   "hooks": {
     "SessionStart": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bun install"
-          }
-        ]
-      },
-      {
         "matcher": "startup",
         "hooks": [
           {
