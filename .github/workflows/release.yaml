@@ -76,6 +76,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          # Pin to the released tag, not the run's trigger commit. When PRs merge in
+          # rapid succession, the run that creates the release can be one whose checkout
+          # SHA predates the version bump, so this job would build/publish a stale
+          # version (e.g. npm "cannot publish over the previously published versions").
+          ref: ${{ needs.release-please.outputs.tag_name }}
           persist-credentials: false
 
       - name: Setup Bun
@@ -119,6 +124,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          # Pin to the released tag, not the run's trigger commit. When PRs merge in
+          # rapid succession, the run that creates the release can be one whose checkout
+          # SHA predates the version bump, so this job would build/publish a stale
+          # version (e.g. npm "cannot publish over the previously published versions").
+          ref: ${{ needs.release-please.outputs.tag_name }}
           persist-credentials: false
 
       - name: Setup Node.js
