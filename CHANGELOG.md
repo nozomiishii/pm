@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/nozomiishii/pm/compare/v0.2.1...v0.2.2) (2026-05-21)
+
+
+### Bug Fixes
+
+* scope release app token permissions and pin op cli version ([#101](https://github.com/nozomiishii/pm/issues/101)) ([c9cd02f](https://github.com/nozomiishii/pm/commit/c9cd02f715ac6ee448d5f1b333e3fa420f215ff0))
+
 ## [0.2.1](https://github.com/nozomiishii/pm/compare/v0.2.0...v0.2.1) (2026-05-10)
 
 
