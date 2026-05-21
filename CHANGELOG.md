@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/nozomiishii/pm/compare/v0.2.2...v0.2.3) (2026-05-21)
+
+
+### Bug Fixes
+
+* checkout released tag in publish jobs to avoid stale republish ([#106](https://github.com/nozomiishii/pm/issues/106)) ([b77fe7f](https://github.com/nozomiishii/pm/commit/b77fe7f1c1e00389957f40e3390c5fd60dec7fbb))
+
 ## [0.2.2](https://github.com/nozomiishii/pm/compare/v0.2.1...v0.2.2) (2026-05-21)
 
 
