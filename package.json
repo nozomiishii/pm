@@ -38,7 +38,7 @@
     "@nozomiishii/commitlint-config": "1.1.1",
     "@nozomiishii/lefthook-config": "1.1.1",
     "@types/node": "25.9.0",
-    "lefthook": "2.1.6",
+    "lefthook": "2.1.8",
     "vitest": "4.1.6"
   },
   "publishConfig": {
