@@ -39,7 +39,7 @@
     "@nozomiishii/lefthook-config": "1.1.1",
     "@types/node": "25.9.1",
     "lefthook": "2.1.8",
-    "vitest": "4.1.6"
+    "vitest": "4.1.7"
   },
   "publishConfig": {
     "access": "public",
