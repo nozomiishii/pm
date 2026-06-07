@@ -35,8 +35,8 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@nozomiishii/commitlint-config": "1.6.0",
-    "@nozomiishii/lefthook-config": "1.6.0",
+    "@nozomiishii/commitlint-config": "1.7.0",
+    "@nozomiishii/lefthook-config": "1.7.0",
     "@types/node": "25.9.1",
     "lefthook": "2.1.9",
     "vitest": "4.1.8"
