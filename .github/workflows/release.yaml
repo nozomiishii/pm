@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Load secrets from 1Password
         id: secrets
-        uses: 1password/load-secrets-action@92467eb28f72e8255933372f1e0707c567ce2259 # v4
+        uses: 1password/load-secrets-action@3a12b0ab99d9cd590a3e9b5a90ea017210ed9556 # v4.0.1
         with:
           # renovate: datasource=docker depName=1password/op versioning=semver
           version: "2.34.0"
@@ -82,7 +82,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -134,7 +134,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
