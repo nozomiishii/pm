@@ -38,6 +38,8 @@ jobs:
               - 'package.json'
               - 'tsconfig.json'
               - 'bun.lock'
+              - 'eslint.config.ts'
+              - 'prettier.config.ts'
 
   test:
     needs: changes
@@ -57,6 +59,12 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun lint
+
+      - name: Format check
+        run: bun format
 
       - name: Type check
         run: bun run typecheck
