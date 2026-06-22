@@ -32,13 +32,23 @@
     "logo:colorize": "bun run src/logo/create-logo-color.ts",
     "install:local": "bash install.sh",
     "uninstall:local": "bash uninstall.sh",
+    "eslint": "eslint --max-warnings=0 --cache",
+    "format": "bun prettier . --check",
+    "format:fix": "bun prettier . --write",
+    "lint": "bun eslint",
+    "lint:fix": "bun eslint --fix",
+    "prettier": "prettier --ignore-unknown --cache",
     "test": "vitest run"
   },
   "devDependencies": {
     "@nozomiishii/commitlint-config": "1.9.0",
+    "@nozomiishii/eslint-config": "1.9.0",
     "@nozomiishii/lefthook-config": "1.9.0",
+    "@nozomiishii/prettier-config": "1.9.0",
     "@types/node": "24.13.2",
+    "eslint": "10.5.0",
     "lefthook": "2.1.9",
+    "prettier": "3.8.4",
     "vitest": "4.1.9"
   },
   "publishConfig": {
