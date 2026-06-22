@@ -1,28 +1,45 @@
+import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { spawn } from "node:child_process";
 import type { Project } from "./types.js";
-import { filterProjects } from "./filter-projects.js";
+import packageJson from "../package.json";
 import { expandHome } from "./expand-home.js";
-import { stripEmojiLabel } from "./strip-emoji-label.js";
+import { filterProjects } from "./filter-projects.js";
 import { findProject } from "./find-project.js";
 import LOGO_COLOR from "./logo/logo-color.ascii" with { type: "text" };
-import packageJson from "../package.json";
+import { stripEmojiLabel } from "./strip-emoji-label.js";
 
 // VS Code Project Manager 拡張のデフォルト保存先に合わせている
 // https://github.com/alefragnani/vscode-project-manager — src/utils/path.ts getFilePathFromAppData()
 // https://github.com/alefragnani/vscode-project-manager/blob/master/src/utils/path.ts
 function defaultConfigPath(): string {
   const home = process.env.HOME ?? "";
+
   switch (process.platform) {
-    case "darwin":
-      return path.join(home, "Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json");
-    case "win32":
-      return path.join(process.env.APPDATA ?? "", "Code/User/globalStorage/alefragnani.project-manager/projects.json");
-    default:
-      return path.join(home, ".config/Code/User/globalStorage/alefragnani.project-manager/projects.json");
+    case "darwin": {
+      return path.join(
+        home,
+        "Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json",
+      );
+    }
+    case "win32": {
+      return path.join(
+        process.env.APPDATA ?? "",
+        "Code/User/globalStorage/alefragnani.project-manager/projects.json",
+      );
+    }
+    default: {
+      return path.join(
+        home,
+        ".config/Code/User/globalStorage/alefragnani.project-manager/projects.json",
+      );
+    }
   }
+}
+
+function printLogo(): void {
+  console.log(LOGO_COLOR);
 }
 
 function usage(): void {
@@ -42,40 +59,7 @@ Options:
 Running \`pm\` without a command opens the fzf picker.`);
 }
 
-function printLogo(): void {
-  console.log(LOGO_COLOR);
-}
-
-const SUBCOMMANDS = new Set(["cd", "ls", "logo", "uninstall"]);
-
-function parseArgs(argv: string[]) {
-  let config = process.env.PM_CONFIG ?? defaultConfigPath();
-  let help = false;
-  let version = false;
-  let subcommand: string | undefined;
-  const rest: string[] = [];
-
-  for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i]!;
-    if (arg === "--config") {
-      config = argv[++i] ?? "";
-    } else if (arg === "--help") {
-      help = true;
-    } else if (arg === "--version") {
-      version = true;
-    } else if (!subcommand && SUBCOMMANDS.has(arg)) {
-      subcommand = arg;
-    } else {
-      rest.push(arg);
-    }
-  }
-
-  return { config, help, version, subcommand, rest };
-}
-
-function plainLabel(name: string): string {
-  return stripEmojiLabel(name) || name;
-}
+const SUBCOMMANDS = new Set(["cd", "logo", "ls", "uninstall"]);
 
 function fzfSelect(projects: Project[]): Promise<Project | undefined> {
   return new Promise((resolve, reject) => {
@@ -104,11 +88,12 @@ function fzfSelect(projects: Project[]): Promise<Project | undefined> {
     proc.on("close", (code) => {
       if (code !== 0) {
         resolve(undefined);
+
         return;
       }
       const selected = stdout.trim();
       const idx = lines.indexOf(selected);
-      resolve(idx >= 0 ? projects[idx] : undefined);
+      resolve(idx === -1 ? undefined : projects[idx]);
     });
 
     proc.on("error", (err: NodeJS.ErrnoException) => {
@@ -122,17 +107,53 @@ function fzfSelect(projects: Project[]): Promise<Project | undefined> {
   });
 }
 
+function handleArg(
+  state: {
+    config: string;
+    help: boolean;
+    rest: string[];
+    subcommand: string | undefined;
+    version: boolean;
+  },
+  arg: string,
+  nextArg: () => string,
+): void {
+  switch (arg) {
+    case "--config": {
+      state.config = nextArg();
+      break;
+    }
+    case "--help": {
+      state.help = true;
+      break;
+    }
+    case "--version": {
+      state.version = true;
+      break;
+    }
+    default: {
+      if (!state.subcommand && SUBCOMMANDS.has(arg)) {
+        state.subcommand = arg;
+      } else {
+        state.rest.push(arg);
+      }
+    }
+  }
+}
+
 async function jumpToProject(projects: Project[], name?: string): Promise<void> {
   let target: Project | undefined;
 
   if (name) {
     target = findProject(projects, name);
+
     if (!target) {
       console.error(`Project not found: ${name}`);
       process.exit(1);
     }
   } else {
     target = await fzfSelect(projects);
+
     if (!target) {
       process.exit(1);
     }
@@ -172,6 +193,7 @@ async function main() {
       stdio: "inherit",
     });
     proc.on("close", (code) => process.exit(code ?? 0));
+
     return;
   }
 
@@ -182,20 +204,21 @@ async function main() {
     process.exit(1);
   }
 
-  const raw = await readFile(filePath, "utf-8");
-  const allProjects: Project[] = JSON.parse(raw);
+  const raw = await readFile(filePath, "utf8");
+  const allProjects: Project[] = JSON.parse(raw) as Project[];
 
   switch (args.subcommand) {
-    case "ls": {
-      const projects = filterProjects(allProjects, []);
-      for (const p of projects) {
-        console.log(plainLabel(p.name));
-      }
-      break;
-    }
     case "cd": {
       const projects = filterProjects(allProjects, []);
       await jumpToProject(projects, args.rest[0]);
+      break;
+    }
+    case "ls": {
+      const projects = filterProjects(allProjects, []);
+
+      for (const p of projects) {
+        console.log(plainLabel(p.name));
+      }
       break;
     }
     default: {
@@ -206,7 +229,29 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error(err);
+function parseArgs(argv: string[]) {
+  const state = {
+    config: process.env.PM_CONFIG ?? defaultConfigPath(),
+    help: false,
+    rest: [] as string[],
+    subcommand: undefined as string | undefined,
+    version: false,
+  };
+
+  for (let i = 0; i < argv.length; i++) {
+    handleArg(state, argv[i], () => argv[++i] ?? "");
+  }
+
+  return state;
+}
+
+function plainLabel(name: string): string {
+  return stripEmojiLabel(name) || name;
+}
+
+try {
+  await main();
+} catch (error: unknown) {
+  console.error(error);
   process.exit(1);
-});
+}

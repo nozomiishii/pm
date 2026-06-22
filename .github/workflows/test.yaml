@@ -19,8 +19,8 @@ jobs:
     runs-on: ubuntu-slim
     timeout-minutes: 5
     permissions:
-      contents: read      # required by actions/checkout to fetch repository code
-      pull-requests: read  # required by dorny/paths-filter to read PR diff
+      contents: read # required by actions/checkout to fetch repository code
+      pull-requests: read # required by dorny/paths-filter to read PR diff
     outputs:
       src: ${{ steps.changes.outputs.src }}
     steps:
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      contents: read  # required by actions/checkout to fetch repository code
+      contents: read # required by actions/checkout to fetch repository code
     steps:
       - name: Checkout code
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0

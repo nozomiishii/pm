@@ -10,10 +10,10 @@ export default defineConfig([
   {
     name: "project/overrides",
     rules: {
-      "n/no-process-env": [
-        "error",
-        { allowedVariables: ["HOME", "APPDATA", "PM_CONFIG"] },
-      ],
+      "n/no-process-env": ["error", { allowedVariables: ["HOME", "APPDATA", "PM_CONFIG"] }],
+      "n/no-process-exit": "off",
+      "no-console": "off",
+      "unicorn/no-process-exit": "off",
     },
   },
 ]);

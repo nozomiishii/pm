@@ -2,7 +2,6 @@
   "name": "@nozomiishii/pm",
   "version": "0.2.3",
   "description": "Project manager CLI — jump to projects via fzf",
-  "type": "module",
   "homepage": "https://github.com/nozomiishii/pm#readme",
   "bugs": {
     "url": "https://github.com/nozomiishii/pm/issues"
@@ -13,6 +12,7 @@
   },
   "license": "MIT",
   "author": "Nozomi Ishii",
+  "type": "module",
   "bin": {
     "pm": "./dist/cli.js"
   },
@@ -22,23 +22,23 @@
   ],
   "scripts": {
     "build": "bun build --compile src/cli.ts --outfile dist/pm",
-    "prepublishOnly": "bun build src/cli.ts --outfile dist/cli.js --target=node --banner '#!/usr/bin/env node'",
-    "prepare": "lefthook install --force",
-    "typecheck": "tsc --noEmit",
-    "dev": "bun run src/cli.ts",
     "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
     "demo:all": "bash demo/create.sh",
     "demo:logo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs demo/logo.tape",
-    "logo:colorize": "bun run src/logo/create-logo-color.ts",
-    "install:local": "bash install.sh",
-    "uninstall:local": "bash uninstall.sh",
+    "dev": "bun run src/cli.ts",
     "eslint": "eslint --max-warnings=0 --cache",
     "format": "bun prettier . --check",
     "format:fix": "bun prettier . --write",
+    "install:local": "bash install.sh",
     "lint": "bun eslint",
     "lint:fix": "bun eslint --fix",
+    "logo:colorize": "bun run src/logo/create-logo-color.ts",
+    "prepare": "lefthook install --force",
+    "prepublishOnly": "bun build src/cli.ts --outfile dist/cli.js --target=node --banner '#!/usr/bin/env node'",
     "prettier": "prettier --ignore-unknown --cache",
-    "test": "vitest run"
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "uninstall:local": "bash uninstall.sh"
   },
   "devDependencies": {
     "@nozomiishii/commitlint-config": "1.9.0",
@@ -51,12 +51,12 @@
     "prettier": "3.8.4",
     "vitest": "4.1.9"
   },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  },
   "packageManager": "bun@1.3.11",
   "engines": {
     "node": "24.17.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }
