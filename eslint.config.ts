@@ -13,13 +13,4 @@ export default defineConfig([
       "n/no-process-env": ["error", { allowedVariables: ["HOME", "APPDATA", "PM_CONFIG"] }],
     },
   },
-  {
-    files: ["src/cli.ts", "src/logo/create-logo-color.ts"],
-    name: "project/cli-entrypoints",
-    rules: {
-      "n/no-process-exit": "off",
-      "no-console": "off",
-      "unicorn/no-process-exit": "off",
-    },
-  },
 ]);

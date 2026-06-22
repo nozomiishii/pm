@@ -10,4 +10,4 @@ const logo = readFileSync(input, "utf8");
 const colored = colorizeLogo(logo);
 
 writeFileSync(output, colored + "\n");
-console.log(`Created ${output}`);
+process.stdout.write(`Created ${output}\n`);

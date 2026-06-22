@@ -10,6 +10,15 @@ import { findProject } from "./find-project.js";
 import LOGO_COLOR from "./logo/logo-color.ascii" with { type: "text" };
 import { stripEmojiLabel } from "./strip-emoji-label.js";
 
+class ExitError extends Error {
+  constructor(
+    message: string,
+    public readonly code: number,
+  ) {
+    super(message);
+  }
+}
+
 // VS Code Project Manager 拡張のデフォルト保存先に合わせている
 // https://github.com/alefragnani/vscode-project-manager — src/utils/path.ts getFilePathFromAppData()
 // https://github.com/alefragnani/vscode-project-manager/blob/master/src/utils/path.ts
@@ -39,11 +48,11 @@ function defaultConfigPath(): string {
 }
 
 function printLogo(): void {
-  console.log(LOGO_COLOR);
+  process.stdout.write(`${LOGO_COLOR}\n`);
 }
 
 function usage(): void {
-  console.log(`Usage: pm [options] [command]
+  process.stdout.write(`Usage: pm [options] [command]
 
 Commands:
   cd [name]                    Jump to a project (fzf if no name given)
@@ -56,7 +65,7 @@ Options:
   --help                       Show this help
   --version                    Show version
 
-Running \`pm\` without a command opens the fzf picker.`);
+Running \`pm\` without a command opens the fzf picker.\n`);
 }
 
 const SUBCOMMANDS = new Set(["cd", "logo", "ls", "uninstall"]);
@@ -98,7 +107,7 @@ function fzfSelect(projects: Project[]): Promise<Project | undefined> {
 
     proc.on("error", (err: NodeJS.ErrnoException) => {
       if (err.code === "ENOENT") {
-        console.error("fzf is not installed. Install it or pass a project name directly.");
+        process.stderr.write("fzf is not installed. Install it or pass a project name directly.\n");
         resolve(undefined);
       } else {
         reject(err);
@@ -148,51 +157,48 @@ async function jumpToProject(projects: Project[], name?: string): Promise<void> 
     target = findProject(projects, name);
 
     if (!target) {
-      console.error(`Project not found: ${name}`);
-      process.exit(1);
+      throw new ExitError(`Project not found: ${name}`, 1);
     }
   } else {
     target = await fzfSelect(projects);
 
     if (!target) {
-      process.exit(1);
+      throw new ExitError("", 1);
     }
   }
 
   const dir = expandHome(target.rootPath);
 
   if (!existsSync(dir)) {
-    console.error(`Directory not found: ${dir}`);
-    process.exit(1);
+    throw new ExitError(`Directory not found: ${dir}`, 1);
   }
 
-  console.log(dir);
+  process.stdout.write(`${dir}\n`);
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
   if (args.version) {
-    console.log(packageJson.version);
-    process.exit(0);
+    process.stdout.write(`${packageJson.version}\n`);
+
+    return;
   }
 
   if (args.help) {
     usage();
-    process.exit(0);
+
+    return;
   }
 
   if (args.subcommand === "logo") {
     printLogo();
-    process.exit(0);
+
+    return;
   }
 
   if (args.subcommand === "uninstall") {
-    const url = "https://raw.githubusercontent.com/nozomiishii/pm/main/uninstall.sh";
-    const proc = spawn("bash", ["-c", `curl -fsSL "${url}" | bash`], {
-      stdio: "inherit",
-    });
-    proc.on("close", (code) => process.exit(code ?? 0));
+    await runUninstall();
 
     return;
   }
@@ -200,8 +206,7 @@ async function main() {
   const filePath = expandHome(args.config);
 
   if (!existsSync(filePath)) {
-    console.error(`File not found: ${filePath}`);
-    process.exit(1);
+    throw new ExitError(`File not found: ${filePath}`, 1);
   }
 
   const raw = await readFile(filePath, "utf8");
@@ -217,7 +222,7 @@ async function main() {
       const projects = filterProjects(allProjects, []);
 
       for (const p of projects) {
-        console.log(plainLabel(p.name));
+        process.stdout.write(`${plainLabel(p.name)}\n`);
       }
       break;
     }
@@ -249,9 +254,30 @@ function plainLabel(name: string): string {
   return stripEmojiLabel(name) || name;
 }
 
+function runUninstall(): Promise<void> {
+  return new Promise((resolve) => {
+    const url = "https://raw.githubusercontent.com/nozomiishii/pm/main/uninstall.sh";
+    const proc = spawn("bash", ["-c", `curl -fsSL "${url}" | bash`], {
+      stdio: "inherit",
+    });
+    proc.on("close", (code) => {
+      process.exitCode = code ?? 0;
+      resolve();
+    });
+  });
+}
+
 try {
   await main();
 } catch (error: unknown) {
-  console.error(error);
-  process.exit(1);
+  if (error instanceof ExitError) {
+    if (error.message) {
+      process.stderr.write(`${error.message}\n`);
+    }
+
+    process.exitCode = error.code;
+  } else {
+    process.stderr.write(`${String(error)}\n`);
+    process.exitCode = 1;
+  }
 }
