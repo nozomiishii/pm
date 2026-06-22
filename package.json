@@ -37,7 +37,7 @@
   "devDependencies": {
     "@nozomiishii/commitlint-config": "1.9.0",
     "@nozomiishii/lefthook-config": "1.9.0",
-    "@types/node": "25.9.4",
+    "@types/node": "26.0.0",
     "lefthook": "2.1.9",
     "vitest": "4.1.9"
   },
