@@ -14,27 +14,28 @@
   "author": "Nozomi Ishii",
   "type": "module",
   "bin": {
-    "pm": "./dist/cli.js"
+    "pm": "./dist/cli.mjs"
   },
   "files": [
-    "dist/cli.js",
+    "dist/cli.mjs",
     "src/pm.zsh"
   ],
   "scripts": {
-    "build": "bun build --compile src/cli.ts --outfile dist/pm",
+    "build": "tsdown",
+    "build:exe": "tsdown --config tsdown.exe.config.ts",
     "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
     "demo:all": "bash demo/create.sh",
     "demo:logo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs demo/logo.tape",
-    "dev": "bun run src/cli.ts",
+    "dev": "tsx src/cli.ts",
     "eslint": "eslint --max-warnings=0 --cache",
-    "format": "bun prettier . --check",
-    "format:fix": "bun prettier . --write",
+    "format": "pnpm prettier . --check",
+    "format:fix": "pnpm prettier . --write",
     "install:local": "bash install.sh",
-    "lint": "bun eslint",
-    "lint:fix": "bun eslint --fix",
-    "logo:colorize": "bun run src/logo/create-logo-color.ts",
+    "lint": "pnpm eslint",
+    "lint:fix": "pnpm eslint --fix",
+    "logo:colorize": "tsx src/logo/create-logo-color.ts",
     "prepare": "lefthook install --force",
-    "prepublishOnly": "bun build src/cli.ts --outfile dist/cli.js --target=node --banner '#!/usr/bin/env node'",
+    "prepublishOnly": "pnpm build",
     "prettier": "prettier --ignore-unknown --cache",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
@@ -45,18 +46,31 @@
     "@nozomiishii/eslint-config": "1.9.0",
     "@nozomiishii/lefthook-config": "1.9.0",
     "@nozomiishii/prettier-config": "1.9.0",
+    "@nozomiishii/tsconfig": "1.9.0",
+    "@tsdown/exe": "0.22.3",
     "@types/node": "24.13.2",
     "eslint": "10.5.0",
     "lefthook": "2.1.9",
     "prettier": "3.8.4",
+    "release-please": "17.9.0",
+    "tsdown": "0.22.3",
+    "tsx": "4.22.4",
+    "typescript": "6.0.3",
     "vitest": "4.1.9"
-  },
-  "packageManager": "bun@1.3.11",
-  "engines": {
-    "node": "24.17.0"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "packageManager": "pnpm@11.8.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.17.0",
+      "onFail": "download"
+    }
   }
 }
