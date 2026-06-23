@@ -1,9 +1,9 @@
 import { defineConfig } from "tsdown";
 
-const shared = {
+const shared = defineConfig({
   entry: ["src/cli.ts"],
   loader: { ".ascii": "text" },
-} as const;
+});
 
 export default defineConfig([
   {
