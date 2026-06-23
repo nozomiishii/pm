@@ -11,11 +11,11 @@ import LOGO_COLOR from "./logo/logo-color.ascii" with { type: "text" };
 import { stripEmojiLabel } from "./strip-emoji-label.js";
 
 class ExitError extends Error {
-  constructor(
-    message: string,
-    public readonly code: number,
-  ) {
+  readonly code: number;
+
+  constructor(message: string, code: number) {
     super(message);
+    this.code = code;
   }
 }
 
@@ -244,7 +244,11 @@ function parseArgs(argv: string[]) {
   };
 
   for (let i = 0; i < argv.length; i++) {
-    handleArg(state, argv[i], () => argv[++i] ?? "");
+    const arg = argv[i];
+
+    if (arg !== undefined) {
+      handleArg(state, arg, () => argv[++i] ?? "");
+    }
   }
 
   return state;
