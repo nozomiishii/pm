@@ -1,7 +1,31 @@
 import { defineConfig } from "tsdown";
 
-export default defineConfig({
+const shared = {
   entry: ["src/cli.ts"],
   loader: { ".ascii": "text" },
-  outputOptions: { banner: "#!/usr/bin/env node" },
-});
+} as const;
+
+export default defineConfig([
+  {
+    ...shared,
+    name: "lib",
+    outputOptions: { banner: "#!/usr/bin/env node" },
+  },
+  {
+    ...shared,
+    exe: {
+      seaConfig: {
+        disableExperimentalSEAWarning: true,
+        useCodeCache: false,
+        useSnapshot: false,
+      },
+      targets: [
+        { arch: "x64", nodeVersion: "25.7.0", platform: "darwin" },
+        { arch: "arm64", nodeVersion: "25.7.0", platform: "darwin" },
+        { arch: "x64", nodeVersion: "25.7.0", platform: "linux" },
+        { arch: "arm64", nodeVersion: "25.7.0", platform: "linux" },
+      ],
+    },
+    name: "exe",
+  },
+]);

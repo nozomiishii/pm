@@ -21,8 +21,8 @@
     "src/pm.zsh"
   ],
   "scripts": {
-    "build": "tsdown",
-    "build:exe": "tsdown --config tsdown.exe.config.ts",
+    "build": "tsdown -F lib",
+    "build:exe": "tsdown -F exe",
     "demo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs",
     "demo:all": "bash demo/create.sh",
     "demo:logo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs demo/logo.tape",
