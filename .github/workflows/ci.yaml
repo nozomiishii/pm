@@ -36,8 +36,9 @@ jobs:
             src:
               - 'src/**'
               - 'package.json'
+              - 'pnpm-lock.yaml'
               - 'tsconfig.json'
-              - 'bun.lock'
+              - 'tsdown.config.ts'
               - 'eslint.config.ts'
               - 'prettier.config.ts'
 
@@ -54,23 +55,34 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: package.json
+          cache: pnpm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: bun lint
+        run: pnpm lint
 
       - name: Format check
-        run: bun format
+        run: pnpm format
 
       - name: Type check
-        run: bun run typecheck
+        run: pnpm run typecheck
 
       - name: Run tests
-        run: bun run test
+        run: pnpm test
+
+      - name: Build and smoke-test the CLI
+        run: |
+          pnpm build
+          node dist/cli.mjs --version
 
   required:
     # name 変更時は infra 側の required_status_checks も更新する
