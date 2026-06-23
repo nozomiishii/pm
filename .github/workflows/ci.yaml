@@ -73,7 +73,7 @@ jobs:
         run: bun run test
 
   required:
-    # name 変更時は infra 側も更新する
+    # name 変更時は infra 側の required_status_checks も更新する
     name: CI / required
     needs: [changes, test]
     if: always()
