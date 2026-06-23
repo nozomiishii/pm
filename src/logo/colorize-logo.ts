@@ -13,10 +13,13 @@ const BLUE_GRADIENT: [number, number, number][] = [
 
 export function colorizeLogo(text: string): string {
   const lines = text.split("\n").filter((l) => l.length > 0);
+
   return lines
     .map((line, i) => {
-      const [r, g, b] = BLUE_GRADIENT[Math.min(i, BLUE_GRADIENT.length - 1)];
-      return `\x1b[38;2;${r};${g};${b}m${line}\x1b[0m`;
+      const color = BLUE_GRADIENT.at(Math.min(i, BLUE_GRADIENT.length - 1)) ?? [10, 50, 185];
+      const [r, g, b] = color;
+
+      return `\u{1B}[38;2;${String(r)};${String(g)};${String(b)}m${line}\u{1B}[0m`;
     })
     .join("\n");
 }
