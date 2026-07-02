@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.4](https://github.com/nozomiishii/pm/compare/v0.2.3...v0.2.4) (2026-07-02)
+
+
+### Features
+
+* add required summary gate job with changes detection to test workflow ([#142](https://github.com/nozomiishii/pm/issues/142)) ([7b298e9](https://github.com/nozomiishii/pm/commit/7b298e9f9e2eb720dbd3bb6932bfdb5220857707))
+
+
+### Bug Fixes
+
+* rename test workflow to CI and add unique gate name ([#150](https://github.com/nozomiishii/pm/issues/150)) ([bd33288](https://github.com/nozomiishii/pm/commit/bd33288cb00d06d983823f9e36179d97b0e02f89))
+
 ## [0.2.3](https://github.com/nozomiishii/pm/compare/v0.2.2...v0.2.3) (2026-05-21)
 
 
