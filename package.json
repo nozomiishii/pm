@@ -47,7 +47,7 @@
     "@nozomiishii/lefthook-config": "1.11.0",
     "@nozomiishii/prettier-config": "1.11.0",
     "@nozomiishii/tsconfig": "1.11.0",
-    "@tsdown/exe": "0.22.3",
+    "@tsdown/exe": "0.22.4",
     "@types/node": "24.13.2",
     "eslint": "10.6.0",
     "lefthook": "2.1.9",
