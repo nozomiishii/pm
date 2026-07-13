@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-[VS Code Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager) の `projects.json` をターミナルから操作する CLI。Bun でネイティブバイナリにコンパイルし `install.sh` で配布する。`src/pm.zsh` がバイナリ出力をうけて現在のシェルで `cd` する（バイナリ単体では親シェルを移動できないため）。
+`src/pm.zsh` がバイナリ出力をうけて現在のシェルで `cd` する（バイナリ単体では親シェルを移動できないため）。
 
 ## デモ (VHS)
 
