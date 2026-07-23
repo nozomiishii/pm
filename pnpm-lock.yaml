@@ -36,8 +36,8 @@ importers:
         specifier: 2.1.10
         version: 2.1.10
       node:
-        specifier: runtime:25.7.0
-        version: runtime:25.7.0
+        specifier: runtime:25.9.0
+        version: runtime:25.9.0
       prettier:
         specifier: 3.9.5
         version: 3.9.5
@@ -3000,7 +3000,7 @@ packages:
     resolution: {integrity: sha512-J6l92tKHX6w8Jy5nO1Vuc01NoIiRGi/d6qBKVxh+IQ8Cr3b6HbVNfKiF8ZpFKufTwpwxMmce2W3iQZ861ZRyTg==}
     engines: {node: '>=18'}
 
-  node@runtime:25.7.0:
+  node@runtime:25.9.0:
     resolution:
       type: variations
       variants:
@@ -3008,9 +3008,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-UAgF0UDG6uWXBcEu60xZlUyHKzRb46iA3VnX+k0TSrs=
+            integrity: sha256-9+EZgxIJ6cAB3B+/eY0j5xzFr1QOBphOnnbC0Px7X+M=
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-aix-ppc64.tar.gz
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-aix-ppc64.tar.gz
           targets:
             - cpu: ppc64
               os: aix
@@ -3018,9 +3018,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-1OPP5ea93aQboMaD43MpYyRluTNx3cU4x2NXh1jVvDU=
+            integrity: sha256-5HnzxGnT2TA6RPAKjqN6N4g5XRcbuAWcSKS7vS43G1k=
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-darwin-arm64.tar.gz
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-darwin-arm64.tar.gz
           targets:
             - cpu: arm64
               os: darwin
@@ -3028,9 +3028,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-+Dkp9KhK5aiMKlMzRmsQDdEBZYBjWSSXYmrp7qFbOxs=
+            integrity: sha256-fXN7U84ZEUK/ocF8+lsHDZboTuv3a43QbYSYHL3D9+M=
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-darwin-x64.tar.gz
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-darwin-x64.tar.gz
           targets:
             - cpu: x64
               os: darwin
@@ -3038,9 +3038,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-OnPJFFVHtdLilJGw7Wo3uVMGt4Trg82yNh8eLnb6I38=
+            integrity: sha256-j7QoMwG4xyD8nxi///D2WecswU0M8geju0EYCKqnOlc=
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-linux-arm64.tar.gz
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-linux-arm64.tar.gz
           targets:
             - cpu: arm64
               os: linux
@@ -3048,9 +3048,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-wrXhYu+yGh1BwCa/WwizeY4ugTuWkDGx7QabFnzOd6A=
+            integrity: sha256-5ydhESmuBwPwzSso2NS9/xUHI1gSgFcPZrxUrFsJLbo=
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-linux-ppc64le.tar.gz
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-linux-ppc64le.tar.gz
           targets:
             - cpu: ppc64le
               os: linux
@@ -3058,9 +3058,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-xToX+1iw2OwwASaLxp+9Tj7JcDS3/efJW0ItVzTFLNU=
+            integrity: sha256-etLcBFxruomsPQrJ3X1IGL8Lv+RnXk5Ce/Hc6U6q6R4=
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-linux-s390x.tar.gz
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-linux-s390x.tar.gz
           targets:
             - cpu: s390x
               os: linux
@@ -3068,9 +3068,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-AzrTp0DWLTx+Oqof7P7sFqcZ1K8zqwMGZr8XEFewcNk=
+            integrity: sha256-E05VskCESKIZdg/gTcRNaFH53op5VJAh/9hw6Qgtnns=
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-linux-x64.tar.gz
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-linux-x64.tar.gz
           targets:
             - cpu: x64
               os: linux
@@ -3078,10 +3078,10 @@ packages:
             archive: zip
             bin:
               node: node.exe
-            integrity: sha256-i4JOsVrpXSS9CCzuljf3TVhQulyGSb1lxfEI42CDXx4=
-            prefix: node-v25.7.0-win-arm64
+            integrity: sha256-a0mbyvFshv4amMjih0/RmAsjtckOpBKYPbQ5LX4Iw2s=
+            prefix: node-v25.9.0-win-arm64
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-win-arm64.zip
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-win-arm64.zip
           targets:
             - cpu: arm64
               os: win32
@@ -3089,10 +3089,10 @@ packages:
             archive: zip
             bin:
               node: node.exe
-            integrity: sha256-SmbqxBbDBHT+nD8O99T/yFqHl8vDX2uFZt+84CeJqcQ=
-            prefix: node-v25.7.0-win-x64
+            integrity: sha256-kpVSuDBe/6yEO6e0JwxDeu+3Avw/vXP80b/9NdSsKE4=
+            prefix: node-v25.9.0-win-x64
             type: binary
-            url: https://nodejs.org/download/release/v25.7.0/node-v25.7.0-win-x64.zip
+            url: https://nodejs.org/download/release/v25.9.0/node-v25.9.0-win-x64.zip
           targets:
             - cpu: x64
               os: win32
@@ -3100,9 +3100,9 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-HM1k6cB518fB6fE23h4qDTv1wnaEOV/54We//HxgLcQ=
+            integrity: sha256-l/b+El+qUfhKe7YA0M1678+qoOdaX0mnxhw9+R0S1TU=
             type: binary
-            url: https://unofficial-builds.nodejs.org/download/release/v25.7.0/node-v25.7.0-linux-arm64-musl.tar.gz
+            url: https://unofficial-builds.nodejs.org/download/release/v25.9.0/node-v25.9.0-linux-arm64-musl.tar.gz
           targets:
             - cpu: arm64
               os: linux
@@ -3111,14 +3111,14 @@ packages:
             archive: tarball
             bin:
               node: bin/node
-            integrity: sha256-P5XSlDpQR6+Z2vhEyhj9aB5OBLR+U/ANH7JLB1q3yEU=
+            integrity: sha256-GsRK8BK+a8F/Hjcj7b8SiXwLrq5dHcdbn5fXFBPkyPU=
             type: binary
-            url: https://unofficial-builds.nodejs.org/download/release/v25.7.0/node-v25.7.0-linux-x64-musl.tar.gz
+            url: https://unofficial-builds.nodejs.org/download/release/v25.9.0/node-v25.9.0-linux-x64-musl.tar.gz
           targets:
             - cpu: x64
               os: linux
               libc: musl
-    version: 25.7.0
+    version: 25.9.0
     hasBin: true
 
   nostics@0.2.0:
@@ -6607,7 +6607,7 @@ snapshots:
 
   node-releases@2.0.50: {}
 
-  node@runtime:25.7.0: {}
+  node@runtime:25.9.0: {}
 
   nostics@0.2.0(esbuild@0.28.1)(rolldown@1.2.0)(vite@8.1.3(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)):
     dependencies:
