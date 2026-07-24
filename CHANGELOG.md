@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/nozomiishii/pm/compare/v0.2.4...v0.2.5) (2026-07-24)
+
+
+### Bug Fixes
+
+* use Node.js 25.7 for executable builds ([#200](https://github.com/nozomiishii/pm/issues/200)) ([114ff21](https://github.com/nozomiishii/pm/commit/114ff219e1b7520ae6b28a6a7c65bb90bff562bd))
+
 ## [0.2.4](https://github.com/nozomiishii/pm/compare/v0.2.3...v0.2.4) (2026-07-22)
 
 
