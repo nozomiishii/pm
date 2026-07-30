@@ -209,7 +209,7 @@ async function main() {
     throw new ExitError(`File not found: ${filePath}`, 1);
   }
 
-  const raw = await readFile(filePath, "utf8");
+  const raw = await readFile(filePath, "utf-8");
   const allProjects: Project[] = JSON.parse(raw) as Project[];
 
   switch (args.subcommand) {
