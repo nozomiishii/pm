@@ -6,7 +6,7 @@ const args = process.argv.slice(2);
 const input = args[0] ? path.resolve(args[0]) : path.resolve("src/logo/logo.ascii");
 const output = args[1] ? path.resolve(args[1]) : path.resolve("src/logo/logo-color.ascii");
 
-const logo = readFileSync(input, "utf8");
+const logo = readFileSync(input, "utf-8");
 const colored = colorizeLogo(logo);
 
 writeFileSync(output, colored + "\n");
