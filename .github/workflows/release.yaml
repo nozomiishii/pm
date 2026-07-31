@@ -67,7 +67,10 @@ jobs:
   build-and-release:
     needs: release-please
     if: needs.release-please.outputs.release_created == 'true'
-    runs-on: ubuntu-latest
+    # macOS runner required: tsdown ad-hoc signs darwin binaries via `codesign`, which
+    # exists only on macOS. On Linux it downgrades the failure to a warning and ships
+    # unsigned binaries that Apple Silicon kills on exec. Linux targets cross-build here.
+    runs-on: macos-latest
     timeout-minutes: 15
     permissions:
       contents: write # required by gh release upload to attach built binaries to the GitHub Release
@@ -105,6 +108,11 @@ jobs:
           mv build/cli-darwin-arm64 build/pm-darwin-arm64
           mv build/cli-linux-x64 build/pm-linux-x64
           mv build/cli-linux-arm64 build/pm-linux-arm64
+
+      - name: Verify darwin binaries are signed
+        run: |
+          codesign --verify build/pm-darwin-x64
+          codesign --verify build/pm-darwin-arm64
 
       - name: Copy release assets
         run: |
