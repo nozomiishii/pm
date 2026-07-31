@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.6](https://github.com/nozomiishii/pm/compare/v0.2.5...v0.2.6) (2026-07-31)
+
+
+### Bug Fixes
+
+* build release binaries on macOS so darwin executables are signed ([#219](https://github.com/nozomiishii/pm/issues/219)) ([2883f24](https://github.com/nozomiishii/pm/commit/2883f248582af196c2f2928d55a90b2a847af543))
+
 ## [0.2.5](https://github.com/nozomiishii/pm/compare/v0.2.4...v0.2.5) (2026-07-30)
 
 
