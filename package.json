@@ -1,6 +1,6 @@
 {
   "name": "@nozomiishii/pm",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Project manager CLI — jump to projects via fzf",
   "homepage": "https://github.com/nozomiishii/pm#readme",
   "bugs": {
