@@ -1,4 +1,6 @@
-/** Remove emoji (incl. modifiers, ZWJ) and normalize whitespace. */
+/**
+ * Remove emoji (incl. modifiers, ZWJ) and normalize whitespace.
+ */
 export function stripEmojiLabel(s: string): string {
   let t = s.normalize("NFC");
 
