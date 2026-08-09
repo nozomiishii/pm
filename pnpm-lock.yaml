@@ -21,8 +21,8 @@ importers:
         specifier: 1.13.0
         version: 1.13.0(prettier@3.9.6)
       '@nozomiishii/tsconfig':
-        specifier: 1.13.0
-        version: 1.13.0
+        specifier: 2.0.1
+        version: 2.0.1
       '@tsdown/exe':
         specifier: 0.22.14
         version: 0.22.14(tsdown@0.22.14)
@@ -726,8 +726,8 @@ packages:
     peerDependencies:
       prettier: 3.9.6
 
-  '@nozomiishii/tsconfig@1.13.0':
-    resolution: {integrity: sha512-ONGAsxPZYNdLLv84cLoqH3jo1otuu8XIIA3BMcfX0eLysBh4mbP6DxCHvrJd1crYUlEcUcqvXfUXNDa0lRHKUQ==}
+  '@nozomiishii/tsconfig@2.0.1':
+    resolution: {integrity: sha512-UaQ6Y/D7kFgvobgC/3m57u0kZQ07xyQ/z7faRUS79LAmkVb3dnaSF1DA1sizUW2II7kjKx7pFaj3g3/zIMdrIg==}
 
   '@ota-meshi/ast-token-store@0.3.0':
     resolution: {integrity: sha512-XRO0zi2NIUKq2lUk3T1ecFSld1fMWRKE6naRFGkgkdeosx7IslyUKNv5Dcb5PJTja9tHJoFu0v/7yEpAkrkrTg==}
@@ -4468,7 +4468,7 @@ snapshots:
       prettier: 3.9.6
       prettier-plugin-packagejson: 3.0.2(prettier@3.9.6)
 
-  '@nozomiishii/tsconfig@1.13.0': {}
+  '@nozomiishii/tsconfig@2.0.1': {}
 
   '@ota-meshi/ast-token-store@0.3.0': {}
 
