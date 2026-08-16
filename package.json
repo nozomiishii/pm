@@ -66,6 +66,10 @@
       "name": "node",
       "version": "25.9.0",
       "onFail": "download"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "onFail": "error"
     }
   },
   "publishConfig": {
