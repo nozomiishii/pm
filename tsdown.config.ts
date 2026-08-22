@@ -1,4 +1,7 @@
 import { defineConfig } from "tsdown";
+import packageJson from "./package.json" with { type: "json" };
+
+const nodeVersion = packageJson.devEngines.runtime.version;
 
 const shared = defineConfig({
   entry: ["src/cli.ts"],
@@ -20,10 +23,10 @@ export default defineConfig([
         useSnapshot: false,
       },
       targets: [
-        { arch: "x64", nodeVersion: "25.7.0", platform: "darwin" },
-        { arch: "arm64", nodeVersion: "25.7.0", platform: "darwin" },
-        { arch: "x64", nodeVersion: "25.7.0", platform: "linux" },
-        { arch: "arm64", nodeVersion: "25.7.0", platform: "linux" },
+        { arch: "x64", nodeVersion, platform: "darwin" },
+        { arch: "arm64", nodeVersion, platform: "darwin" },
+        { arch: "x64", nodeVersion, platform: "linux" },
+        { arch: "arm64", nodeVersion, platform: "linux" },
       ],
     },
     name: "exe",

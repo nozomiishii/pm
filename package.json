@@ -57,10 +57,6 @@
     "typescript": "6.0.3",
     "vitest": "4.1.11"
   },
-  "packageManager": "pnpm@11.22.0",
-  "engines": {
-    "node": ">=24"
-  },
   "devEngines": {
     "runtime": {
       "name": "node",
@@ -69,6 +65,7 @@
     },
     "packageManager": {
       "name": "pnpm",
+      "version": "11.22.0",
       "onFail": "error"
     }
   },
