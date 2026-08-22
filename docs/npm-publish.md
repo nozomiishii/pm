@@ -64,7 +64,7 @@ OIDC で短命トークンを自動発行する仕組み。シークレット管
 release-please → リリース作成 → npm-publish ジョブ実行 → npm publish
 ```
 
-- `actions/setup-node` の `registry-url: https://registry.npmjs.org` が `.npmrc` を生成し、認証を設定する
+- `.npmrc` は用意しない。publish 先は pnpm 既定の `https://registry.npmjs.org/` で、pnpm 11 の OIDC は `ACTIONS_ID_TOKEN_REQUEST_*` だけを読む（[pnpm v11.1.3](https://github.com/pnpm/pnpm/releases/tag/v11.1.3)）
 - `id-token: write` 権限は OIDC トークン生成（Trusted Publishers / provenance）に必要
 - `publishConfig` は `package.json` に記述しており、CI の `npm publish` にフラグは不要
 
