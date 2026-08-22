@@ -1,7 +1,6 @@
 import { defineConfig } from "tsdown";
 import packageJson from "./package.json" with { type: "json" };
 
-// SEA バイナリに同梱する node は開発時の runtime と揃える
 const nodeVersion = packageJson.devEngines.runtime.version;
 
 const shared = defineConfig({
