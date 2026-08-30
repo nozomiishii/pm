@@ -35,8 +35,6 @@ jobs:
         with:
           persist-credentials: false
 
-      # op のバージョン正本は mise.toml。PATH 上に op があれば
-      # load-secrets-action はそれを再利用するため version input は不要。
       - name: Setup mise
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
 
