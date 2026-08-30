@@ -1,6 +1,8 @@
 [tools]
 node = "25.9.0"
 pnpm = "11.24.0"
+# 1Password CLI: release workflow の load-secrets-action は PATH 上の op を再利用する
+op = "2.39.0"
 
 [settings]
 lockfile = true
