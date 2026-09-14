@@ -42,7 +42,7 @@ jobs:
               - 'tsconfig.json'
               - 'tsdown.config.ts'
               - 'eslint.config.ts'
-              - 'prettier.config.ts'
+              - 'oxfmt.config.ts'
 
   test:
     needs: changes

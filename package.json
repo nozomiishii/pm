@@ -6,13 +6,12 @@
   "bugs": {
     "url": "https://github.com/nozomiishii/pm/issues"
   },
+  "license": "MIT",
+  "author": "Nozomi Ishii",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nozomiishii/pm.git"
   },
-  "license": "MIT",
-  "author": "Nozomi Ishii",
-  "type": "module",
   "bin": {
     "pm": "./dist/cli.mjs"
   },
@@ -20,6 +19,11 @@
     "dist/cli.mjs",
     "src/pm.zsh"
   ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsdown -F lib",
     "build:exe": "tsdown -F exe",
@@ -28,15 +32,15 @@
     "demo:logo": "docker run --rm -v \"$(pwd)\":/vhs pm-vhs demo/logo.tape",
     "dev": "tsx src/cli.ts",
     "eslint": "eslint --max-warnings=0 --cache",
-    "format": "pnpm prettier . --check",
-    "format:fix": "pnpm prettier . --write",
+    "format": "pnpm oxfmt . --check",
+    "format:fix": "pnpm oxfmt .",
     "install:local": "bash install.sh",
     "lint": "pnpm eslint",
     "lint:fix": "pnpm eslint --fix",
     "logo:colorize": "tsx src/logo/create-logo-color.ts",
+    "oxfmt": "oxfmt",
     "prepare": "lefthook install --force",
     "prepublishOnly": "pnpm build",
-    "prettier": "prettier --ignore-unknown --cache",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "uninstall:local": "bash uninstall.sh"
@@ -45,32 +49,28 @@
     "@nozomiishii/commitlint-config": "2.7.0",
     "@nozomiishii/eslint-config": "2.7.0",
     "@nozomiishii/lefthook-config": "2.7.0",
-    "@nozomiishii/prettier-config": "2.7.0",
+    "@nozomiishii/oxfmt-config": "2.7.0",
     "@nozomiishii/tsconfig": "2.7.0",
     "@tsdown/exe": "0.23.0",
     "@types/node": "24.13.4",
     "eslint": "10.10.0",
     "lefthook": "2.1.12",
-    "prettier": "3.9.6",
+    "oxfmt": "0.67.0",
     "tsdown": "0.23.0",
     "tsx": "4.23.13",
     "typescript": "6.0.3",
     "vitest": "5.0.0"
   },
   "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": "25.9.0",
-      "onFail": "download"
-    },
     "packageManager": {
       "name": "pnpm",
       "version": "12.4.1",
       "onFail": "error"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "25.9.0",
+      "onFail": "download"
     }
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
   }
 }
