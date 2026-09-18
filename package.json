@@ -52,7 +52,7 @@
     "@nozomiishii/oxfmt-config": "2.7.0",
     "@nozomiishii/tsconfig": "2.7.0",
     "@tsdown/exe": "0.23.0",
-    "@types/node": "24.13.4",
+    "@types/node": "24.13.5",
     "eslint": "10.10.0",
     "lefthook": "2.1.14",
     "oxfmt": "0.68.0",
