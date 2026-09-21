@@ -6,10 +6,6 @@ export function filterProjects(projects: Project[], tags: string[]): Project[] {
       return false;
     }
 
-    if (tags.length > 0) {
-      return tags.every((t) => p.tags?.includes(t));
-    }
-
-    return true;
+    return tags.length > 0 ? tags.every((t) => p.tags?.includes(t)) : true;
   });
 }

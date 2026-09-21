@@ -5,9 +5,5 @@ export function expandHome(p: string): string {
     return path.join(process.env.HOME ?? "", p.slice(2));
   }
 
-  if (p === "~") {
-    return process.env.HOME ?? "";
-  }
-
-  return p;
+  return p === "~" ? (process.env.HOME ?? "") : p;
 }
