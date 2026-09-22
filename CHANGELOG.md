@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.7](https://github.com/nozomiishii/pm/compare/v0.2.6...v0.2.7) (2026-09-22)
+
+
+### Bug Fixes
+
+* restore guard clauses with eslint-config 2.7.2 ([#309](https://github.com/nozomiishii/pm/issues/309)) ([157a0f9](https://github.com/nozomiishii/pm/commit/157a0f99df497c9c15e9ab9a4a59c6297c2fe625))
+* satisfy prefer-ternary ([#303](https://github.com/nozomiishii/pm/issues/303)) ([f580e85](https://github.com/nozomiishii/pm/commit/f580e85623f446dbc0843965baffce94ec8184b0))
+
 ## [0.2.6](https://github.com/nozomiishii/pm/compare/v0.2.5...v0.2.6) (2026-07-31)
 
 
