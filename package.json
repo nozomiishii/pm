@@ -46,11 +46,11 @@
     "uninstall:local": "bash uninstall.sh"
   },
   "devDependencies": {
-    "@nozomiishii/commitlint-config": "2.7.2",
+    "@nozomiishii/commitlint-config": "2.8.0",
     "@nozomiishii/eslint-config": "2.8.0",
-    "@nozomiishii/lefthook-config": "2.7.2",
-    "@nozomiishii/oxfmt-config": "2.7.2",
-    "@nozomiishii/tsconfig": "2.7.2",
+    "@nozomiishii/lefthook-config": "2.8.0",
+    "@nozomiishii/oxfmt-config": "2.8.0",
+    "@nozomiishii/tsconfig": "2.8.0",
     "@tsdown/exe": "0.23.1",
     "@types/node": "24.19.2",
     "eslint": "10.12.0",
