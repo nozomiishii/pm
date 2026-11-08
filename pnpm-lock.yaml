@@ -182,8 +182,8 @@ importers:
         specifier: 2.8.1
         version: 2.8.1
       '@tsdown/exe':
-        specifier: 0.23.4
-        version: 0.23.4(tsdown@0.23.5)
+        specifier: 0.23.5
+        version: 0.23.5(tsdown@0.23.5)
       '@types/node':
         specifier: 26.6.6
         version: 26.6.6
@@ -201,7 +201,7 @@ importers:
         version: 0.75.0
       tsdown:
         specifier: 0.23.5
-        version: 0.23.5(@tsdown/exe@0.23.4)(oxc-resolver@11.24.2)(tsx@4.23.15)(typescript@6.0.3)
+        version: 0.23.5(@tsdown/exe@0.23.5)(oxc-resolver@11.24.2)(tsx@4.23.15)(typescript@6.0.3)
       tsx:
         specifier: 4.23.15
         version: 4.23.15
@@ -1373,11 +1373,11 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
 
-  '@tsdown/exe@0.23.4':
-    resolution: {integrity: sha512-rU76qeRlEmDAD3wj03BIfN83GKCpqabe4IOuG09XLopngbwHUsxw14fSJYZqMliep6b/r8zm+tH3hP5361GUNw==}
+  '@tsdown/exe@0.23.5':
+    resolution: {integrity: sha512-10u+GOgcfenv4ZJ+2269W+RePRzRfWqi0fIjNd8nSzOhX9bcaSXXlU2q8brjsN5SCAARi7iq0t4vZTZ3V5rDiw==}
     engines: {node: ^22.18.0 || ^24.11.0 || >=26.0.0}
     peerDependencies:
-      tsdown: 0.23.4
+      tsdown: 0.23.5
 
   '@tybys/wasm-util@0.10.4':
     resolution: {integrity: sha512-W3c4gRigFS0T/Ma4qIYF3GDAc5AQdHb1yL5znJT1Zv1YaD9Kitx656wBjvr19qbiosmZT8lWDM5BEMynUqX65A==}
@@ -4629,11 +4629,11 @@ snapshots:
       - supports-color
       - typescript
 
-  '@tsdown/exe@0.23.4(tsdown@0.23.5)':
+  '@tsdown/exe@0.23.5(tsdown@0.23.5)':
     dependencies:
       obug: 3.0.0
       tinyexec: 1.3.1
-      tsdown: 0.23.5(@tsdown/exe@0.23.4)(oxc-resolver@11.24.2)(tsx@4.23.15)(typescript@6.0.3)
+      tsdown: 0.23.5(@tsdown/exe@0.23.5)(oxc-resolver@11.24.2)(tsx@4.23.15)(typescript@6.0.3)
       verkit: 0.5.0
 
   '@tybys/wasm-util@0.10.4':
@@ -6482,7 +6482,7 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
-  tsdown@0.23.5(@tsdown/exe@0.23.4)(oxc-resolver@11.24.2)(tsx@4.23.15)(typescript@6.0.3):
+  tsdown@0.23.5(@tsdown/exe@0.23.5)(oxc-resolver@11.24.2)(tsx@4.23.15)(typescript@6.0.3):
     dependencies:
       cac: 7.1.0
       defu: 6.1.7
@@ -6499,7 +6499,7 @@ snapshots:
       unconfig-core: 7.5.0
       verkit: 0.5.0
     optionalDependencies:
-      '@tsdown/exe': 0.23.4(tsdown@0.23.5)
+      '@tsdown/exe': 0.23.5(tsdown@0.23.5)
       tsx: 4.23.15
       typescript: 6.0.3
     transitivePeerDependencies:
